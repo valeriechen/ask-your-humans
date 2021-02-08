@@ -1,0 +1,136 @@
+{
+    "rules": [
+        {
+            "created_items": {
+                "Gold Ore": 1
+            },
+            "rule_name": "mine_Gold Ore",
+            "required_action": "mine",
+            "required_location": "Gold Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Iron Ore": 1
+            },
+            "rule_name": "mine_Iron Ore",
+            "required_action": "mine",
+            "required_location": "Iron Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Diamond Boots": 1
+            },
+            "rule_name": "craft_Diamond Boots",
+            "required_action": "craft",
+            "required_location": "Diamond Boots Station",
+            "depleted_items": {
+                "Diamond": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Diamond": 1
+            },
+            "rule_name": "mine_Diamond",
+            "required_action": "mine",
+            "required_location": "Diamond Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Brick Stairs": 1
+            },
+            "rule_name": "craft_Brick Stairs",
+            "required_action": "craft",
+            "required_location": "Brick Stairs Station",
+            "depleted_items": {
+                "Brick": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Brick": 1
+            },
+            "rule_name": "mine_Brick",
+            "required_action": "mine",
+            "required_location": "Brick Factory",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Cobblestone Stairs": 1
+            },
+            "rule_name": "craft_Cobblestone Stairs",
+            "required_action": "craft",
+            "required_location": "Cobblestone Stairs Station",
+            "depleted_items": {
+                "Cobblestone": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Cobblestone": 1
+            },
+            "rule_name": "mine_Cobblestone",
+            "required_action": "mine",
+            "required_location": "Cobblestone Stash",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        }
+    ],
+    "spawns": [
+        {
+            "goal": "Make Diamond Boots (Diamond Boots=1)",
+            "recipe": "https://i.postimg.cc/Jh49Kw0X/Diamond-Boots.png",
+            "count": 2,
+            "Diamond Boots Station": 1,
+            "Diamond Ore Vein": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Brick Stairs (Brick Stairs=1)",
+            "recipe": "https://i.postimg.cc/FK395XmB/Brick-Stairs.png",
+            "count": 2,
+            "Brick Stairs Station": 1,
+            "Brick Factory": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Cobblestone Stairs (Cobblestone Stairs=1)",
+            "recipe": "https://i.postimg.cc/Vk56hhdx/Cobblestone-Stairs.png",
+            "count": 2,
+            "Cobblestone Stairs Station": 1,
+            "Cobblestone Stash": 1,
+            "Pickaxe": 1
+        }
+    ],
+    "objects": {
+        "Gold Ore Vein": "ResourceFont",
+        "Iron Ore Vein": "ResourceFont",
+        "Diamond Boots Station": "CraftingContainer",
+        "Diamond Ore Vein": "ResourceFont",
+        "Brick Stairs Station": "CraftingContainer",
+        "Brick Factory": "ResourceFont",
+        "Cobblestone Stairs Station": "CraftingContainer",
+        "Cobblestone Stash": "ResourceFont"
+    }
+}

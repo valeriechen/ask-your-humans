@@ -1,0 +1,7 @@
+[
+    {"created_items": {"iron_ore": 1},
+    "required_action": "mine",
+    "required_location": "ore_vein",
+    "non_depleted_items": {"pickaxe": 1}
+    }
+]

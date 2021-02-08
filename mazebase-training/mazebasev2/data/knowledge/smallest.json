@@ -1,0 +1,28 @@
+{
+    "rules": [
+        {
+            "created_items": {
+                "Gold Ore": 1
+            },
+            "rule_name": "mine_Gold Ore",
+            "required_action": "mine",
+            "required_location": "Gold Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        }
+    ],
+    "spawns": [
+        {
+            "goal": "Make Gold Ore (Gold Ore=1)",
+            "recipe": "https://i.postimg.cc/KY6yJqMD/Gold-Ore.png",
+            "count": 1,
+            "Gold Ore Vein": 1,
+            "Pickaxe": 1
+        }
+    ],
+    "objects": {
+        "Gold Ore Vein": "ResourceFont"
+    }
+}

@@ -1,0 +1,1 @@
+from .mazeutils import MazeException

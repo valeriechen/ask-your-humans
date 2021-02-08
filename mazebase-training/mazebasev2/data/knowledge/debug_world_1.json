@@ -1,0 +1,93 @@
+{
+    "rules": [
+        {"created_items": {"iron_ore": 1},
+        "rule_name": "craft_iron_ore",
+        "required_action": "mine",
+        "required_location": "iron_ore_vein",
+        "non_depleted_items": {"pickaxe": 1},
+        "spawn_ind": 0
+        },
+
+        {"created_items": {"coal": 1},
+        "rule_name": "mine_coal",
+        "required_action": "mine",
+        "required_location": "coal_vein",
+        "non_depleted_items": {"pickaxe": 1},
+        "spawn_ind": 0
+        },
+
+        {"created_items": {"diamond_ore": 1},
+        "rule_name": "mine_diamond",
+        "required_action": "mine",
+        "required_location": "diamond_ore_vein",
+        "non_depleted_items": {"pickaxe": 1},
+        "spawn_ind": 0
+        },
+
+        {"created_items": {"wood": 1},
+        "rule_name": "chop_wood",
+        "required_action": "chop",
+        "required_location": "tree",
+        "non_depleted_items": {"axe": 1},
+        "spawn_ind": 1
+        },
+
+        {"created_items": {"wool": 1},
+        "rule_name": "get_wool",
+        "required_action": "grab",
+        "required_location": "sheep",
+        "non_depleted_items": {"shears": 1},
+        "spawn_ind": 1
+        },
+
+        {"created_items": {"potato": 1},
+        "rule_name": "pick_potato",
+        "required_action": "grab",
+        "required_location": "potato_plant",
+        "spawn_ind": 1
+        }
+    ],
+    "objects": {
+        "iron_ore": "CraftingItem",
+        "diamond_ore": "CraftingItem",
+        "coal": "CraftingItem",
+        "wood": "CraftingItem",
+        "wool": "CraftingItem",
+        "potato": "CraftingItem",
+        "pickaxe": "CraftingItem",
+        "axe": "CraftingItem",
+        "shears": "CraftingItem",
+        "iron_ore_vein": "ResourceFont",
+        "coal_vein": "ResourceFont",
+        "sheep": "ResourceFont",
+        "potato_plant": "ResourceFont",
+        "diamond_ore_vein": "ResourceFont",
+        "tree": "ResourceFont",
+        "workstation": "CraftingContainer",
+        "sign": "CraftingContainer"
+    },
+    "spawns": [
+        {
+            "goal": "laksdjlfkjasdf",
+            "recipe": "lkajsdlkfjsdf",
+            "pickaxe": 1,
+            "axe": 1,
+            "shears": 1,
+            "iron_ore_vein": 1,
+            "diamond_ore_vein": 1,
+            "coal_vein": 1,
+            "workstation": 1 
+        },
+        {
+            "goal": "laksdjlfkjasdf",
+            "recipe": "lkajsdlkfjsdf",
+            "pickaxe": 1,
+            "axe": 1,
+            "shears": 1,
+            "tree": 1,
+            "sheep": 1,
+            "potato_plant": 1,
+            "sign": 1 
+        }
+    ]
+}

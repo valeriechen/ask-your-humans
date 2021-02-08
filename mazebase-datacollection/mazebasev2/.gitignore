@@ -1,0 +1,13 @@
+*.sw*
+*.sv*
+*.su*
+lib/__pycache__/
+lib/knowledge/__pycache__/
+lib/mazebase/__pycache__/
+lib/mazebase/games/__pycache__/
+lib/mazebase/items/__pycache__/
+lib/mazebase/utils/__pycache__/
+lib/planning/__pycache__/
+lib/rl/__pycache__/
+lib/rl/algo/__pycache__/
+lib/utils/__pycache__/

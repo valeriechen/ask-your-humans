@@ -1,0 +1,67 @@
+{
+    "rules": [
+        {
+            "created_items": {
+                "Iron Ore": 1
+            },
+            "rule_name": "mine_Iron Ore",
+            "required_action": "mine",
+            "required_location": "Iron Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Brick Stairs": 1
+            },
+            "rule_name": "craft_Brick Stairs",
+            "required_action": "craft",
+            "required_location": "Brick Stairs Station",
+            "depleted_items": {
+                "Brick": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Iron Helmet": 1
+            },
+            "rule_name": "craft_Iron Helmet",
+            "required_action": "craft",
+            "required_location": "Iron Helmet Station",
+            "depleted_items": {
+                "Iron Ore": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Brick": 1
+            },
+            "rule_name": "mine_Brick",
+            "required_action": "mine",
+            "required_location": "Brick Factory",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        }
+    ],
+    "spawns": [
+        {
+            "goal": "Make Iron Helmet (Iron Chestplate=1)",
+            "recipe": "https://i.postimg.cc/qvcm91SG/Leather-Chestplate.png",
+            "count": 3,
+            "Iron Helmet Station": 1,
+            "Iron Ore Vein": 1,
+            "Pickaxe": 1
+        }
+    ],
+    "objects": {
+        "Diamond Ore Vein": "ResourceFont",
+        "Brick Stairs Station": "CraftingContainer",
+        "Brick Factory": "ResourceFont"
+    }
+}

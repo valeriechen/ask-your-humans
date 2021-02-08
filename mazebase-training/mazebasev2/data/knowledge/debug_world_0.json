@@ -1,0 +1,26 @@
+{
+    "rules": [
+        {"created_items": {"iron_ore": 1},
+        "rule_name": "craft_iron_ore",
+        "required_action": "mine",
+        "required_location": "iron_ore_vein",
+        "non_depleted_items": {"pickaxe": 1},
+        "spawn_ind": 0
+        }
+    ],
+    "objects": {
+        "iron_ore": "CraftingItem",
+        "pickaxe": "CraftingItem",
+        "gold_pickaxe": "CraftingItem",
+        "iron_ore_vein": "ResourceFont",
+        "ore_vein": "ResourceFont",
+        "workstation": "CraftingContainer"
+    },
+    "spawns": [{
+        "pickaxe": 1,
+        "gold_pickaxe": 1,
+        "iron_ore_vein": 1,
+        "ore_vein": 1,
+        "workstation": 1 
+    }]
+}

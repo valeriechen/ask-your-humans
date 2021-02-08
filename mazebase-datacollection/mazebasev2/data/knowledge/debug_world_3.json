@@ -1,0 +1,198 @@
+{
+    "rules": [
+        {
+            "created_items": {
+                "Apple": 1
+            },
+            "rule_name": "mine_Apple",
+            "required_action": "mine",
+            "required_location": "Apple Tree",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Beetroot": 1
+            },
+            "rule_name": "mine_Beetroot",
+            "required_action": "mine",
+            "required_location": "Beetroot crop",
+            "non_depleted_items": {
+                "Shovel": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Blaze Powder": 1
+            },
+            "rule_name": "craft_Blaze Powder",
+            "required_action": "craft",
+            "required_location": "Blaze Powder Station",
+            "depleted_items": {
+                "Blaze Rod": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Blaze Rod": 1
+            },
+            "rule_name": "mine_Blaze Rod",
+            "required_action": "mine",
+            "required_location": "Blze",
+            "non_depleted_items": {
+                "Sword": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Block of Coal": 1
+            },
+            "rule_name": "craft_Block of Coal",
+            "required_action": "craft",
+            "required_location": "Block of Coal Station",
+            "depleted_items": {
+                "Coal": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Coal": 1
+            },
+            "rule_name": "mine_Coal",
+            "required_action": "mine",
+            "required_location": "Coal Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Block of Quartz": 1
+            },
+            "rule_name": "craft_Block of Quartz",
+            "required_action": "craft",
+            "required_location": "Block of Quartz Station",
+            "depleted_items": {
+                "Nether Quartz": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Nether Quartz": 1
+            },
+            "rule_name": "mine_Nether Quartz",
+            "required_action": "mine",
+            "required_location": "Nether Quartz Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Bone Meal": 1
+            },
+            "rule_name": "craft_Bone Meal",
+            "required_action": "craft",
+            "required_location": "Bone Meal Station",
+            "depleted_items": {
+                "Bone": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Bone": 1
+            },
+            "rule_name": "mine_Bone",
+            "required_action": "mine",
+            "required_location": "Skeleton",
+            "non_depleted_items": {
+                "Sword": 1
+            },
+            "spawn_ind": 1
+        }
+    ],
+    "spawns": [
+        {
+            "goal": "Make Apple (Apple=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Apple5d3e39f7e8991a84.png",
+            "count": 1,
+            "Apple Tree": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Beetroot (Beetroot=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Beetroot4e49b6f199fce58e.png",
+            "count": 1,
+            "Beetroot crop": 1,
+            "Shovel": 1
+        },
+        {
+            "goal": "Make Blaze Powder (Blaze Powder=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Blaze-Powder64a11c0bee35ccae.png",
+            "count": 2,
+            "Blaze Powder Station": 1,
+            "Blze": 1,
+            "Sword": 1
+        },
+        {
+            "goal": "Make Blaze Rod (Blaze Rod=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Blaze-Rod3041a841d89bae34.png",
+            "count": 1,
+            "Blze": 1,
+            "Sword": 1
+        },
+        {
+            "goal": "Make Block of Coal (Block of Coal=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Block-of-Coale9033a6307dce977.png",
+            "count": 2,
+            "Block of Coal Station": 1,
+            "Coal Vein": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Block of Quartz (Block of Quartz=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Block-of-Quartz74bde7b64e715bf9.png",
+            "count": 2,
+            "Block of Quartz Station": 1,
+            "Nether Quartz Ore Vein": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Bone Meal (Bone Meal=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Bone-Mealfd17b76f984dd3bf.png",
+            "count": 2,
+            "Bone Meal Station": 1,
+            "Skeleton": 1,
+            "Sword": 1
+        },
+        {
+            "goal": "Make Bone (Bone=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Bone5d5652334b59944c.png",
+            "count": 1,
+            "Skeleton": 1,
+            "Sword": 1
+        }
+    ],
+    "objects": {
+        "Apple Tree": "ResourceFont",
+        "Beetroot crop": "ResourceFont",
+        "Blaze Powder Station": "CraftingContainer",
+        "Blze": "ResourceFont",
+        "Block of Coal Station": "CraftingContainer",
+        "Coal Vein": "ResourceFont",
+        "Block of Quartz Station": "CraftingContainer",
+        "Nether Quartz Ore Vein": "ResourceFont",
+        "Bone Meal Station": "CraftingContainer",
+        "Skeleton": "ResourceFont"
+    }
+}

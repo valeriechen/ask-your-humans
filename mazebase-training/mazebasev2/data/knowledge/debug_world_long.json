@@ -1,0 +1,616 @@
+{
+    "rules": [
+        {
+            "created_items": {
+                "Andesite": 1
+            },
+            "rule_name": "craft_Andesite",
+            "required_action": "craft",
+            "required_location": "Andesite Station",
+            "depleted_items": {
+                "Diorite": 1,
+                "Cobblestone": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Diorite": 1
+            },
+            "rule_name": "craft_Diorite",
+            "required_action": "craft",
+            "required_location": "Diorite Station",
+            "depleted_items": {
+                "Cobblestone": 1,
+                "Nether Quartz": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Cobblestone": 1
+            },
+            "rule_name": "mine_Cobblestone",
+            "required_action": "mine",
+            "required_location": "Cobblestone Stash",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Nether Quartz": 1
+            },
+            "rule_name": "mine_Nether Quartz",
+            "required_action": "mine",
+            "required_location": "Nether Quartz Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Arrow": 1
+            },
+            "rule_name": "craft_Arrow",
+            "required_action": "craft",
+            "required_location": "Arrow Station",
+            "depleted_items": {
+                "Stick": 1,
+                "Feather": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Stick": 1
+            },
+            "rule_name": "craft_Stick",
+            "required_action": "craft",
+            "required_location": "Stick Station",
+            "depleted_items": {
+                "Wood Plank": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Wood Plank": 1
+            },
+            "rule_name": "craft_Wood Plank",
+            "required_action": "craft",
+            "required_location": "Wood Plank Station",
+            "depleted_items": {
+                "Wood": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Wood": 1
+            },
+            "rule_name": "mine_Wood",
+            "required_action": "mine",
+            "required_location": "Tree",
+            "non_depleted_items": {
+                "Axe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Feather": 1
+            },
+            "rule_name": "mine_Feather",
+            "required_action": "mine",
+            "required_location": "Chicken",
+            "non_depleted_items": {
+                "Weapon": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Baked Potato": 1
+            },
+            "rule_name": "craft_Baked Potato",
+            "required_action": "craft",
+            "required_location": "Baked Potato Station",
+            "depleted_items": {
+                "Potato": 1,
+                "Coal": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Potato": 1
+            },
+            "rule_name": "mine_Potato",
+            "required_action": "mine",
+            "required_location": "Potato Plant",
+            "non_depleted_items": {
+                "Shovel": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Coal": 1
+            },
+            "rule_name": "mine_Coal",
+            "required_action": "mine",
+            "required_location": "Coal Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Shears": 1
+            },
+            "rule_name": "craft_Shears",
+            "required_action": "craft",
+            "required_location": "Shears Station",
+            "depleted_items": {
+                "Iron Ingot": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Bed": 1
+            },
+            "rule_name": "craft_Bed",
+            "required_action": "craft",
+            "required_location": "Bed Station",
+            "depleted_items": {
+                "Wool": 1,
+                "Wood Plank": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Wool": 1
+            },
+            "rule_name": "mine_Wool",
+            "required_action": "mine",
+            "required_location": "Sheep",
+            "non_depleted_items": {
+                "Shears": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Beetroot Soup": 1
+            },
+            "rule_name": "craft_Beetroot Soup",
+            "required_action": "craft",
+            "required_location": "Beetroot Soup Station",
+            "depleted_items": {
+                "Beetroot": 1,
+                "Bowl": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Beetroot": 1
+            },
+            "rule_name": "mine_Beetroot",
+            "required_action": "mine",
+            "required_location": "Beetroot crop",
+            "non_depleted_items": {
+                "Shovel": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Bowl": 1
+            },
+            "rule_name": "craft_Bowl",
+            "required_action": "craft",
+            "required_location": "Bowl Station",
+            "depleted_items": {
+                "Wood Plank": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Black Carpet": 1
+            },
+            "rule_name": "craft_Black Carpet",
+            "required_action": "craft",
+            "required_location": "Black Carpet Station",
+            "depleted_items": {
+                "Black Wool": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Black Wool": 1
+            },
+            "rule_name": "craft_Black Wool",
+            "required_action": "craft",
+            "required_location": "Black Wool Station",
+            "depleted_items": {
+                "Wool": 1,
+                "Ink Sac": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Ink Sac": 1
+            },
+            "rule_name": "mine_Ink Sac",
+            "required_action": "mine",
+            "required_location": "Squid",
+            "non_depleted_items": {
+                "Sword": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Blue Carpet": 1
+            },
+            "rule_name": "craft_Blue Carpet",
+            "required_action": "craft",
+            "required_location": "Blue Carpet Station",
+            "depleted_items": {
+                "Blue Wool": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Blue Wool": 1
+            },
+            "rule_name": "craft_Blue Wool",
+            "required_action": "craft",
+            "required_location": "Blue Wool Station",
+            "depleted_items": {
+                "Wool": 1,
+                "Lapis Lazuli": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Lapis Lazuli": 1
+            },
+            "rule_name": "mine_Lapis Lazuli",
+            "required_action": "mine",
+            "required_location": "Lapis Lazuli Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Boat": 1
+            },
+            "rule_name": "craft_Boat",
+            "required_action": "craft",
+            "required_location": "Boat Station",
+            "depleted_items": {
+                "Wood Plank": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Bone Block": 1
+            },
+            "rule_name": "craft_Bone Block",
+            "required_action": "craft",
+            "required_location": "Bone Block Station",
+            "depleted_items": {
+                "Bone Meal": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Bone Meal": 1
+            },
+            "rule_name": "craft_Bone Meal",
+            "required_action": "craft",
+            "required_location": "Bone Meal Station",
+            "depleted_items": {
+                "Bone": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Bone": 1
+            },
+            "rule_name": "mine_Bone",
+            "required_action": "mine",
+            "required_location": "Skeleton",
+            "non_depleted_items": {
+                "Sword": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Book": 1
+            },
+            "rule_name": "craft_Book",
+            "required_action": "craft",
+            "required_location": "Book Station",
+            "depleted_items": {
+                "Paper": 1,
+                "Leather": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Paper": 1
+            },
+            "rule_name": "craft_Paper",
+            "required_action": "craft",
+            "required_location": "Paper Station",
+            "depleted_items": {
+                "Sugar Cane": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Sugar Cane": 1
+            },
+            "rule_name": "mine_Sugar Cane",
+            "required_action": "mine",
+            "required_location": "Sugar Cane Plant",
+            "non_depleted_items": {
+                "Axe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Leather": 1
+            },
+            "rule_name": "craft_Leather",
+            "required_action": "craft",
+            "required_location": "Leather Station",
+            "depleted_items": {
+                "Rabbit Hide": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Rabbit Hide": 1
+            },
+            "rule_name": "mine_Rabbit Hide",
+            "required_action": "mine",
+            "required_location": "Rabbit",
+            "non_depleted_items": {
+                "Sword": 1
+            },
+            "spawn_ind": 1
+        }
+    ],
+    "spawns": [
+        {
+            "goal": "Make Andesite (Andesite=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Andesite75cbdad82d878b08.png",
+            "count": 5,
+            "Andesite Station": 1,
+            "Diorite Station": 1,
+            "Cobblestone Stash": 1,
+            "Pickaxe": 1,
+            "Nether Quartz Ore Vein": 1
+        },
+        {
+            "goal": "Make Arrow (Arrow=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Arrow125b357da0c40dfc.png",
+            "count": 5,
+            "Arrow Station": 1,
+            "Stick Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1,
+            "Chicken": 1,
+            "Weapon": 1
+        },
+        {
+            "goal": "Make Baked Potato (Baked Potato=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Baked-Potato1ce82586e8b0e15b.png",
+            "count": 3,
+            "Baked Potato Station": 1,
+            "Potato Plant": 1,
+            "Shovel": 1,
+            "Coal Vein": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Bed (Bed=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Bedca62d46837db5cb5.png",
+            "count": 4,
+            "Bed Station": 1,
+            "Sheep": 1,
+            "Shears": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1
+        },
+        {
+            "goal": "Make Beetroot Soup (Beetroot Soup=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Beetroot-Soupcfcfd94e57c677fd.png",
+            "count": 5,
+            "Beetroot Soup Station": 1,
+            "Beetroot crop": 1,
+            "Shovel": 1,
+            "Bowl Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1
+        },
+        {
+            "goal": "Make Black Carpet (Black Carpet=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Black-Carpet5710c228fc94855e.png",
+            "count": 4,
+            "Black Carpet Station": 1,
+            "Black Wool Station": 1,
+            "Sheep": 1,
+            "Shears": 1,
+            "Squid": 1,
+            "Sword": 1
+        },
+        {
+            "goal": "Make Black Wool (Black Wool=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Black-Wool063880cb74b5c127.png",
+            "count": 3,
+            "Black Wool Station": 1,
+            "Sheep": 1,
+            "Shears": 1,
+            "Squid": 1,
+            "Sword": 1
+        },
+        {
+            "goal": "Make Blue Carpet (Blue Carpet=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Blue-Carpet14989c3049d3badb.png",
+            "count": 4,
+            "Blue Carpet Station": 1,
+            "Blue Wool Station": 1,
+            "Sheep": 1,
+            "Shears": 1,
+            "Lapis Lazuli Ore Vein": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Blue Wool (Blue Wool=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Blue-Woold3db30281df567ac.png",
+            "count": 3,
+            "Blue Wool Station": 1,
+            "Sheep": 1,
+            "Shears": 1,
+            "Lapis Lazuli Ore Vein": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Boat (Boat=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Boat0e7eb4c3783d1f22.png",
+            "count": 3,
+            "Boat Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1
+        },
+        {
+            "goal": "Make Bone Block (Bone Block=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Bone-Blockc0e2c31ea0986137.png",
+            "count": 3,
+            "Bone Block Station": 1,
+            "Bone Meal Station": 1,
+            "Skeleton": 1,
+            "Sword": 1
+        },
+        {
+            "goal": "Make Book (Book=1)",
+            "recipe": "https://picoolio.net/images/2019/07/04/Book7cb3848226f749cc.png",
+            "count": 5,
+            "Book Station": 1,
+            "Paper Station": 1,
+            "Sugar Cane Plant": 1,
+            "Axe": 1,
+            "Leather Station": 1,
+            "Rabbit": 1,
+            "Sword": 1
+        }
+    ],
+    "objects": {
+        "Andesite": "CraftingItem",
+        "Andesite Station": "CraftingContainer",
+        "Diorite": "CraftingItem",
+        "Diorite Station": "CraftingContainer",
+        "Cobblestone": "CraftingItem",
+        "Cobblestone Stash": "ResourceFont",
+        "Pickaxe": "CraftingItem",
+        "Nether Quartz": "CraftingItem",
+        "Nether Quartz Ore Vein": "ResourceFont",
+        "Apple": "CraftingItem",
+        "Arrow": "CraftingItem",
+        "Arrow Station": "CraftingContainer",
+        "Stick": "CraftingItem",
+        "Stick Station": "CraftingContainer",
+        "Wood Plank": "CraftingItem",
+        "Wood Plank Station": "CraftingContainer",
+        "Wood": "CraftingItem",
+        "Tree": "ResourceFont",
+        "Axe": "CraftingItem",
+        "Feather": "CraftingItem",
+        "Chicken": "ResourceFont",
+        "Weapon": "CraftingItem",
+        "Baked Potato": "CraftingItem",
+        "Baked Potato Station": "CraftingContainer",
+        "Potato": "CraftingItem",
+        "Potato Plant": "ResourceFont",
+        "Shovel": "CraftingItem",
+        "Coal": "CraftingItem",
+        "Coal Vein": "ResourceFont",
+        "Shears": "CraftingItem",
+        "Shears Station": "CraftingContainer",
+        "Bed": "CraftingItem",
+        "Bed Station": "CraftingContainer",
+        "Wool": "CraftingItem",
+        "Sheep": "ResourceFont",
+        "Beetroot Soup": "CraftingItem",
+        "Beetroot Soup Station": "CraftingContainer",
+        "Beetroot": "CraftingItem",
+        "Beetroot crop": "ResourceFont",
+        "Bowl": "CraftingItem",
+        "Bowl Station": "CraftingContainer",
+        "Black Carpet": "CraftingItem",
+        "Black Carpet Station": "CraftingContainer",
+        "Black Wool": "CraftingItem",
+        "Black Wool Station": "CraftingContainer",
+        "Ink Sac": "CraftingItem",
+        "Squid": "ResourceFont",
+        "Sword": "CraftingItem",
+        "Blaze Powder": "CraftingItem",
+        "Blaze Rod": "CraftingItem",
+        "Block of Coal": "CraftingItem",
+        "Block of Quartz": "CraftingItem",
+        "Blue Carpet": "CraftingItem",
+        "Blue Carpet Station": "CraftingContainer",
+        "Blue Wool": "CraftingItem",
+        "Blue Wool Station": "CraftingContainer",
+        "Lapis Lazuli": "CraftingItem",
+        "Lapis Lazuli Ore Vein": "ResourceFont",
+        "Boat": "CraftingItem",
+        "Boat Station": "CraftingContainer",
+        "Bone Block": "CraftingItem",
+        "Bone Block Station": "CraftingContainer",
+        "Bone Meal": "CraftingItem",
+        "Bone Meal Station": "CraftingContainer",
+        "Bone": "CraftingItem",
+        "Skeleton": "ResourceFont",
+        "Book": "CraftingItem",
+        "Book Station": "CraftingContainer",
+        "Paper": "CraftingItem",
+        "Paper Station": "CraftingContainer",
+        "Sugar Cane": "CraftingItem",
+        "Sugar Cane Plant": "ResourceFont",
+        "Leather": "CraftingItem",
+        "Leather Station": "CraftingContainer",
+        "Rabbit Hide": "CraftingItem",
+        "Rabbit": "ResourceFont"
+    }
+}

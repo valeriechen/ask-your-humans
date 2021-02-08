@@ -1,0 +1,456 @@
+{
+    "rules": [
+        {
+            "created_items": {
+                "Stone Pickaxe": 1
+            },
+            "rule_name": "craft_Stone Pickaxe",
+            "required_action": "craft",
+            "required_location": "Stone Pickaxe Station",
+            "depleted_items": {
+                "Stick": 1,
+                "Cobblestone": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Stick": 1
+            },
+            "rule_name": "craft_Stick",
+            "required_action": "craft",
+            "required_location": "Stick Station",
+            "depleted_items": {
+                "Wood Plank": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Wood Plank": 1
+            },
+            "rule_name": "craft_Wood Plank",
+            "required_action": "craft",
+            "required_location": "Wood Plank Station",
+            "depleted_items": {
+                "Wood": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Diamond Pickaxe": 1
+            },
+            "rule_name": "craft_Diamond Pickaxe",
+            "required_action": "craft",
+            "required_location": "Diamond Pickaxe Station",
+            "depleted_items": {
+                "Stick": 1,
+                "Diamond": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Gold Ore": 1
+            },
+            "rule_name": "mine_Gold Ore",
+            "required_action": "mine",
+            "required_location": "Gold Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Diamond Boots": 1
+            },
+            "rule_name": "craft_Diamond Boots",
+            "required_action": "craft",
+            "required_location": "Diamond Boots Station",
+            "depleted_items": {
+                "Diamond": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Diamond": 1
+            },
+            "rule_name": "mine_Diamond",
+            "required_action": "mine",
+            "required_location": "Diamond Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Brick Stairs": 1
+            },
+            "rule_name": "craft_Brick Stairs",
+            "required_action": "craft",
+            "required_location": "Brick Stairs Station",
+            "depleted_items": {
+                "Brick": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Brick": 1
+            },
+            "rule_name": "mine_Brick",
+            "required_action": "mine",
+            "required_location": "Brick Factory",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Cobblestone Stairs": 1
+            },
+            "rule_name": "craft_Cobblestone Stairs",
+            "required_action": "craft",
+            "required_location": "Cobblestone Stairs Station",
+            "depleted_items": {
+                "Cobblestone": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Cobblestone": 1
+            },
+            "rule_name": "mine_Cobblestone",
+            "required_action": "mine",
+            "required_location": "Cobblestone Stash",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Iron Ingot": 1
+            },
+            "rule_name": "craft_Iron Ingot",
+            "required_action": "craft",
+            "required_location": "Iron Ingot Station",
+            "depleted_items": {
+                "Iron Ore": 1,
+                "Coal": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Iron Ore": 1
+            },
+            "rule_name": "mine_Iron Ore",
+            "required_action": "mine",
+            "required_location": "Iron Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Coal": 1
+            },
+            "rule_name": "mine_Coal",
+            "required_action": "mine",
+            "required_location": "Coal Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Leather Leggins": 1
+            },
+            "rule_name": "craft_Leather Leggins",
+            "required_action": "craft",
+            "required_location": "Leather Leggins Station",
+            "depleted_items": {
+                "Leather": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Leather": 1
+            },
+            "rule_name": "craft_Leather",
+            "required_action": "craft",
+            "required_location": "Leather Station",
+            "depleted_items": {
+                "Rabbit Hide": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Rabbit Hide": 1
+            },
+            "rule_name": "mine_Rabbit Hide",
+            "required_action": "mine",
+            "required_location": "Rabbit",
+            "non_depleted_items": {
+                "Sword": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Leather Chestplate": 1
+            },
+            "rule_name": "craft_Leather Chestplate",
+            "required_action": "craft",
+            "required_location": "Leather Chestplate Station",
+            "depleted_items": {
+                "Leather": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Leather Helmet": 1
+            },
+            "rule_name": "craft_Leather Helmet",
+            "required_action": "craft",
+            "required_location": "Leather Helmet Station",
+            "depleted_items": {
+                "Leather": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Leather Boots": 1
+            },
+            "rule_name": "craft_Leather Boots",
+            "required_action": "craft",
+            "required_location": "Leather Boots Station",
+            "depleted_items": {
+                "Leather": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Wood stairs": 1
+            },
+            "rule_name": "craft_Wood stairs",
+            "required_action": "craft",
+            "required_location": "Wood stairs Station",
+            "depleted_items": {
+                "Wood Plank": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Wood": 1
+            },
+            "rule_name": "mine_Wood",
+            "required_action": "mine",
+            "required_location": "Tree",
+            "non_depleted_items": {
+                "Axe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Wooden Door": 1
+            },
+            "rule_name": "craft_Wooden Door",
+            "required_action": "craft",
+            "required_location": "Wooden Door Station",
+            "depleted_items": {
+                "Wood Plank": 1
+            },
+            "spawn_ind": 1
+        }
+    ],
+    "spawns": [
+        {
+            "goal": "Make Iron Ore (Iron Ore=1)",
+            "recipe": "https://i.postimg.cc/pXCRRJwP/Iron-Ore.png",
+            "count": 1,
+            "Iron Ore Vein": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Brick Stairs (Brick Stairs=1)",
+            "recipe": "https://i.postimg.cc/FK395XmB/Brick-Stairs.png",
+            "count": 2,
+            "Brick Stairs Station": 1,
+            "Brick Factory": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Cobblestone Stairs (Cobblestone Stairs=1)",
+            "recipe": "https://i.postimg.cc/Vk56hhdx/Cobblestone-Stairs.png",
+            "count": 2,
+            "Cobblestone Stairs Station": 1,
+            "Cobblestone Stash": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Iron Ingot (Iron Ingot=1)",
+            "recipe": "https://i.postimg.cc/G3Nm6KnV/Iron-Ingot.png",
+            "count": 3,
+            "Iron Ingot Station": 1,
+            "Iron Ore Vein": 1,
+            "Pickaxe": 1,
+            "Coal Vein": 1
+        },
+        {
+            "goal": "Make Leather Leggins (Leather Leggins=1)",
+            "recipe": "https://i.postimg.cc/Jh1TmbWC/Leather-Leggins.png",
+            "count": 3,
+            "Leather Leggins Station": 1,
+            "Leather Station": 1,
+            "Rabbit": 1,
+            "Sword": 1
+        },
+        {
+            "goal": "Make Leather Chestplate (Leather Chestplate=1)",
+            "recipe": "https://i.postimg.cc/qvcm91SG/Leather-Chestplate.png",
+            "count": 3,
+            "Leather Chestplate Station": 1,
+            "Leather Station": 1,
+            "Rabbit": 1,
+            "Sword": 1
+        },
+        {
+            "goal": "Make Leather Boots (Leather Boots=1)",
+            "recipe": "https://i.postimg.cc/ZKdsLbL2/Leather-Boots.png",
+            "count": 3,
+            "Leather Boots Station": 1,
+            "Leather Station": 1,
+            "Rabbit": 1,
+            "Sword": 1
+        },
+        {
+            "goal": "Make Leather Boots (Leather Boots=1)",
+            "recipe": "https://i.postimg.cc/ZKdsLbL2/Leather-Boots.png",
+            "count": 3,
+            "Leather Boots Station": 1,
+            "Leather Station": 1,
+            "Rabbit": 1,
+            "Sword": 1
+        },
+        {
+            "goal": "Make Wood stairs (Wood stairs=1)",
+            "recipe": "https://i.postimg.cc/TwKJY07F/Wood-stairs.png",
+            "count": 3,
+            "Wood stairs Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1
+        },
+        {
+            "goal": "Make Wooden Door (Wooden Door=1)",
+            "recipe": "https://i.postimg.cc/Pq2wDDvH/Wooden-Door.png",
+            "count": 3,
+            "Wooden Door Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1
+        },
+        {
+            "goal": "Make Stone Pickaxe (Stone Pickaxe=1)",
+            "recipe": "https://i.postimg.cc/WbCq6j4D/Stone-Pickaxe.png",
+            "count": 5,
+            "Stone Pickaxe Station": 1,
+            "Stick Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1,
+            "Cobblestone Stash": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Diamond Pickaxe (Diamond Pickaxe=1)",
+            "recipe": "https://i.postimg.cc/C5t5NHwy/Diamond-Pickaxe.png",
+            "count": 5,
+            "Diamond Pickaxe Station": 1,
+            "Stick Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1,
+            "Diamond Ore Vein": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Stone Pickaxe (Stone Pickaxe=1)",
+            "recipe": "https://i.postimg.cc/WbCq6j4D/Stone-Pickaxe.png",
+            "count": 5,
+            "Stone Pickaxe Station": 1,
+            "Stick Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1,
+            "Cobblestone Stash": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Diamond Pickaxe (Diamond Pickaxe=1)",
+            "recipe": "https://i.postimg.cc/C5t5NHwy/Diamond-Pickaxe.png",
+            "count": 5,
+            "Diamond Pickaxe Station": 1,
+            "Stick Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1,
+            "Diamond Ore Vein": 1,
+            "Pickaxe": 1
+        }
+    ],
+    "objects": {
+        "Iron Ingot Station": "CraftingContainer",
+        "Iron Ore Vein": "ResourceFont",
+        "Coal Vein": "ResourceFont",
+        "Leather Leggins Station": "CraftingContainer",
+        "Leather Station": "CraftingContainer",
+        "Rabbit": "ResourceFont",
+        "Leather Chestplate Station": "CraftingContainer",
+        "Leather Helmet Station": "CraftingContainer",
+        "Leather Boots Station": "CraftingContainer",
+        "Wood stairs Station": "CraftingContainer",
+        "Wood Plank Station": "CraftingContainer",
+        "Tree": "ResourceFont",
+        "Wooden Door Station": "CraftingContainer",
+        "Gold Ore Vein": "ResourceFont",
+        "Diamond Boots Station": "CraftingContainer",
+        "Diamond Ore Vein": "ResourceFont",
+        "Brick Stairs Station": "CraftingContainer",
+        "Brick Factory": "ResourceFont",
+        "Cobblestone Stairs Station": "CraftingContainer",
+        "Cobblestone Stash": "ResourceFont",
+        "Stone Pickaxe": "CraftingItem",
+        "Stone Pickaxe Station": "CraftingContainer",
+        "Stick": "CraftingItem",
+        "Stick Station": "CraftingContainer",
+        "Wood Plank": "CraftingItem",
+        "Wood": "CraftingItem",
+        "Tree": "ResourceFont",
+        "Axe": "CraftingItem",
+        "Cobblestone": "CraftingItem",
+        "Cobblestone Stash": "ResourceFont",
+        "Pickaxe": "CraftingItem",
+        "Diamond Pickaxe": "CraftingItem",
+        "Diamond Pickaxe Station": "CraftingContainer",
+        "Diamond": "CraftingItem",
+        "Diamond Ore Vein": "ResourceFont"
+    }
+}

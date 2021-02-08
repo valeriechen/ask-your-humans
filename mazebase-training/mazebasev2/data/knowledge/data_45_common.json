@@ -1,0 +1,134 @@
+{
+    "rules": [
+        {
+            "created_items": {
+                "Stone Pickaxe": 1
+            },
+            "rule_name": "craft_Stone Pickaxe",
+            "required_action": "craft",
+            "required_location": "Stone Pickaxe Station",
+            "depleted_items": {
+                "Stick": 1,
+                "Cobblestone": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Stick": 1
+            },
+            "rule_name": "craft_Stick",
+            "required_action": "craft",
+            "required_location": "Stick Station",
+            "depleted_items": {
+                "Wood Plank": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Wood Plank": 1
+            },
+            "rule_name": "craft_Wood Plank",
+            "required_action": "craft",
+            "required_location": "Wood Plank Station",
+            "depleted_items": {
+                "Wood": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Wood": 1
+            },
+            "rule_name": "mine_Wood",
+            "required_action": "mine",
+            "required_location": "Tree",
+            "non_depleted_items": {
+                "Axe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Cobblestone": 1
+            },
+            "rule_name": "mine_Cobblestone",
+            "required_action": "mine",
+            "required_location": "Cobblestone Stash",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Diamond Pickaxe": 1
+            },
+            "rule_name": "craft_Diamond Pickaxe",
+            "required_action": "craft",
+            "required_location": "Diamond Pickaxe Station",
+            "depleted_items": {
+                "Stick": 1,
+                "Diamond": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Diamond": 1
+            },
+            "rule_name": "mine_Diamond",
+            "required_action": "mine",
+            "required_location": "Diamond Ore Vein",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        }
+    ],
+    "spawns": [
+        {
+            "goal": "Make Stone Pickaxe (Stone Pickaxe=1)",
+            "recipe": "https://i.postimg.cc/WbCq6j4D/Stone-Pickaxe.png",
+            "count": 5,
+            "Stone Pickaxe Station": 1,
+            "Stick Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1,
+            "Cobblestone Stash": 1,
+            "Pickaxe": 1
+        },
+        {
+            "goal": "Make Diamond Pickaxe (Diamond Pickaxe=1)",
+            "recipe": "https://i.postimg.cc/C5t5NHwy/Diamond-Pickaxe.png",
+            "count": 5,
+            "Diamond Pickaxe Station": 1,
+            "Stick Station": 1,
+            "Wood Plank Station": 1,
+            "Tree": 1,
+            "Axe": 1,
+            "Diamond Ore Vein": 1,
+            "Pickaxe": 1
+        }
+    ],
+    "objects": {
+        "Stone Pickaxe": "CraftingItem",
+        "Stone Pickaxe Station": "CraftingContainer",
+        "Stick": "CraftingItem",
+        "Stick Station": "CraftingContainer",
+        "Wood Plank": "CraftingItem",
+        "Wood Plank Station": "CraftingContainer",
+        "Wood": "CraftingItem",
+        "Tree": "ResourceFont",
+        "Axe": "CraftingItem",
+        "Cobblestone": "CraftingItem",
+        "Cobblestone Stash": "ResourceFont",
+        "Pickaxe": "CraftingItem",
+        "Diamond Pickaxe": "CraftingItem",
+        "Diamond Pickaxe Station": "CraftingContainer",
+        "Diamond": "CraftingItem",
+        "Diamond Ore Vein": "ResourceFont"
+    }
+}

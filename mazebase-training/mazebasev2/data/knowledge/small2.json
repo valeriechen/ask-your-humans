@@ -1,0 +1,42 @@
+{
+    "rules": [
+        {
+            "created_items": {
+                "Brick Stairs": 1
+            },
+            "rule_name": "craft_Brick Stairs",
+            "required_action": "craft",
+            "required_location": "Brick Stairs Station",
+            "depleted_items": {
+                "Brick": 1
+            },
+            "spawn_ind": 1
+        },
+        {
+            "created_items": {
+                "Brick": 1
+            },
+            "rule_name": "mine_Brick",
+            "required_action": "mine",
+            "required_location": "Brick Factory",
+            "non_depleted_items": {
+                "Pickaxe": 1
+            },
+            "spawn_ind": 1
+        }
+    ],
+    "spawns": [
+        {
+            "goal": "Make Brick Stairs (Brick Stairs=1)",
+            "recipe": "https://i.postimg.cc/FK395XmB/Brick-Stairs.png",
+            "count": 2,
+            "Brick Stairs Station": 1,
+            "Brick Factory": 1,
+            "Pickaxe": 1
+        }
+    ],
+    "objects": {
+        "Brick Stairs Station": "CraftingContainer",
+        "Brick Factory": "ResourceFont"
+    }
+}

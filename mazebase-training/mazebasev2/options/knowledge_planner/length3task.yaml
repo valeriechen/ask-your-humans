@@ -1,0 +1,60 @@
+method:                                 # Options related to the method (in this case planning)
+    mode: learned_knowledge_planner     # Name of method
+    knowledge:                          # Options realted to the way the method stores knowledge and encodes and predicts it in networks
+        mode: no_learning               # Pure planning for knowledge. No knowledge graph learning; only does exact knowledge inference
+    max_precond_steps: 100              # Max number of timesteps to find preconditions
+    proposal_prob: 0.5                  # Probability we try to verify a proposal (if one is available)
+    necessity_prob: 0.25                # Probability that we try to verify if a precondition is necessary
+    sufficient_prob: 0.25               # Probability that we try to verify if a new preposal is sufficient
+    rl:                                 # Options related to rl for precondition satisfaction
+        alg:   
+            alg_name: ppo               # What algorithm to run
+            use_gae: True               # General advantage
+            gae_tau: 0.95               # GAE parameter
+            entropy_coef: 0             # Entropy term coefficient
+            value_loss_coef: 1          # Value loss coefficient
+            num_steps: 2048             # Number of forward steps
+            num_processes: 1            # Number of parallel processes to run
+            ppo_epoch: 100              # Number of ppo epochs
+            num_mini_batch: 32          # Number of batcxhes for ppo
+            clip_param: 0.2             # ppo clip parameter        
+            norm_ret: False             # Whether to add normalization to returns
+        model:
+            recurrent_policy: False     # Use a recurrent policy
+            hid_sz: 32                  # MLP hidden size
+            model_type: CNN             # What kind of network model
+        env:
+            gamma: 0.99                     # Discount factor
+            num_stack: 1                    # Number of frames to stack
+            goal_precond_reward: 1          # Reward for satisfing preconditions
+            irrelevant_precond_reward: 0.5  # Reward (or disreward) for irrelevant preconditions
+            finish_reward: 5                # Reward for successfully finishing the MDP
+        optim:
+            lr: 0.0003                  # Learning rate
+            eps: 0.00001                # RMSprop optimizer epsilon
+            alpha: 0.99                 # RMSprop optimizer alpha
+            max_grad_norm: 0.5          # Max norm of gradients
+            use_linear_lr_decay: False  # Whether to do lr decay 
+env:
+    knowledge_root: data/knowledge/     # Root of where we store the knowledge files
+    world_knowledge:                    # World knowledge jsons
+        train: data_3.json
+    proposed_knowledge:                 # Kp knowledge jsons
+        source: random_spawns           # Source (file | random_spawns)
+        true_prob: 0.5                  # Probability we keep the actually correct schema
+        change_num_probs: 1,0           # Probability we change one thing, two things, etc
+        change_type_probs: 0.4,0.4,0.2  # Prob of add, drop, swap
+    state_rep:                          # Info on how we want to represent state
+        w: 5                            # Width of env (we assume it is fixed)
+        h: 5                            # Height of env (again, assume fixed)
+        rep_agent: True                 # If true, first layer of env is the agent
+        obs_list: obs_list_0.txt        # Location of list of objects
+    max_craft_depth: 1                  # Max depth we should search to satisfy a rule, to just spawn the right items instead
+    inventory_chance: 0                 # Prob a needed item is in inventory (otherwise it's dropped in the world)
+    spawn:
+        mode: fixed_spawns              # Choose randomly from a list of possible spawns
+    num_episodes: 100000                # Total number of episodes to run our agent
+    episode_num_steps: 500              # How many steps to allow per episode
+logs:
+    log_base: /checkpoint/Anon Author/scientist/       # Base dir log (should be same for all config files)
+    exp_name: minimum_viable_planning_v0            # Unique experiment name
