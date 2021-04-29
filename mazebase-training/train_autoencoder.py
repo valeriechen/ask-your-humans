@@ -37,73 +37,6 @@ from test_models import generate_lang, play_game_w_language_v2, play_game_w_lang
 from data_augmentation import rotate_board, rotate_action
 
 
-class PremadeCraftingDataset(Dataset):
-
-    def __init__(self, embed_dim, train_states, train_onehot, train_inventories, train_actions, train_goals, train_instructions, vocab, transform=None):
-
-        self.embed_dim = embed_dim
-
-        self.vocab = vocab
-        self.train_instructions = train_instructions
-
-        self.train_states_embedding = train_states
-        self.train_states_onehot = train_states_onehot
-        self.train_inventory_embedding = train_inventories
-        self.train_actions_onehot = train_actions
-        self.train_goals_embedding = train_goals
-
-    def __getitem__(self, index):
-
-        temp_instruction = self.train_instructions[index]
-
-        while temp_instruction == None:
-            index = index + 10 
-            if index > self.train_states_embedding.shape[0]:
-                index = 0
-            temp_instruction = self.train_instructions[index]
-
-        instruction = []
-        instruction.append(vocab('<start>'))
-        instruction.extend([self.vocab(token) for token in temp_instruction])
-        instruction.append(vocab('<end>'))
-        target = torch.Tensor(instruction)
-
-        states_embedding = torch.Tensor(self.train_states_embedding[index])
-        states_onehot = torch.Tensor(self.train_states_onehot[index])
-        action = torch.Tensor(self.train_actions_onehot[index])
-        goal = torch.Tensor(self.train_goals_embedding[index])
-        inventory = torch.Tensor(np.array([self.train_inventory_embedding[index]]))
-
-        '''
-        except:
-
-            index = index + 10 # try using the neighboring example instead.. let's see if this breaks. 
-
-            states_embedding = torch.Tensor(self.train_states_embedding[index])
-            states_onehot = torch.Tensor(self.train_states_onehot[index])
-            action = torch.Tensor(self.train_actions_onehot[index])
-            goal = torch.Tensor(self.train_goals_embedding[index])
-            inventory = torch.Tensor(np.array([self.train_inventory_embedding[index]]))
-
-            temp_instruction = self.train_instructions[index]
-        
-            instruction = []
-            instruction.append(vocab('<start>'))
-            instruction.extend([self.vocab(token) for token in temp_instruction])
-            instruction.append(vocab('<end>'))
-            target = torch.Tensor(instruction)
-
-            # instruction.append(vocab('<start>'))
-            # instruction = [self.vocab('<unk>')]
-            # instruction.append(vocab('<end>'))
-            # target = torch.Tensor(instruction)
-        '''
-
-        return states_onehot, states_embedding, inventory, action, goal, target
-
-    def __len__(self):
-        return self.train_states_embedding.shape[0]
-        #return len(self.train_states)
 
 class CraftingDataset(Dataset):
 
@@ -134,91 +67,6 @@ class CraftingDataset(Dataset):
         print("goals loaded")
         self.train_inventory_embedding = [self.get_inventory_embedding(inventory) for inventory in self.train_inventories]
         print("done loading dataset")
-
-        '''
-        augmented_train_states = np.repeat(self.train_states_embedding, repeats=8, axis=0)
-        augmented_train_onehot = np.repeat(self.train_states_onehot, repeats=8, axis=0)
-        augmented_train_inventories = np.repeat(self.train_inventory_embedding, repeats=8, axis=0)
-        augmented_train_actions = np.repeat(self.train_actions_onehot, repeats=8, axis=0)
-        augmented_train_goals = np.repeat(self.train_goals_embedding, repeats=8, axis=0)
-        augmented_train_instructions = np.repeat(self.train_instructions, repeats=8, axis=0)
-
-        counter = 1
-        num = 50000 #202831
-
-        for i in range(0, augmented_train_states.shape[0], 8):
-
-            print(i, augmented_train_states.shape[0])
-            augmented_train_states[i+1] = rotate_board(augmented_train_states[i+1], 90, False)
-            augmented_train_states[i+2] = rotate_board(augmented_train_states[i+2], 180, False)
-            augmented_train_states[i+3] = rotate_board(augmented_train_states[i+3], 270, False)
-            augmented_train_states[i+4] = rotate_board(augmented_train_states[i+4], 0, True)
-            augmented_train_states[i+5] = rotate_board(augmented_train_states[i+5], 90, True)
-            augmented_train_states[i+6] = rotate_board(augmented_train_states[i+6], 180, True)
-            augmented_train_states[i+7] = rotate_board(augmented_train_states[i+7], 270, True)
-
-            augmented_train_onehot[i+1] = rotate_board(augmented_train_onehot[i+1], 90, False)
-            augmented_train_onehot[i+2] = rotate_board(augmented_train_onehot[i+2], 180, False)
-            augmented_train_onehot[i+3] = rotate_board(augmented_train_onehot[i+3], 270, False)
-            augmented_train_onehot[i+4] = rotate_board(augmented_train_onehot[i+4], 0, True)
-            augmented_train_onehot[i+5] = rotate_board(augmented_train_onehot[i+5], 90, True)
-            augmented_train_onehot[i+6] = rotate_board(augmented_train_onehot[i+6], 180, True)
-            augmented_train_onehot[i+7] = rotate_board(augmented_train_onehot[i+7], 270, True)
-
-            augmented_train_actions[i+1] = rotate_action(augmented_train_actions[i+1], 90, False)
-            augmented_train_actions[i+2] = rotate_action(augmented_train_actions[i+2], 180, False)
-            augmented_train_actions[i+3] = rotate_action(augmented_train_actions[i+3], 270, False)
-            augmented_train_actions[i+4] = rotate_action(augmented_train_actions[i+4], 0, True)
-            augmented_train_actions[i+5] = rotate_action(augmented_train_actions[i+5], 90, True)
-            augmented_train_actions[i+6] = rotate_action(augmented_train_actions[i+6], 180, True)
-            augmented_train_actions[i+7] = rotate_action(augmented_train_actions[i+7], 270, True)
-
-            if i > counter * num:
-
-                print("SAVED!")
-
-                with open('data/augmented_train_states_'+str(counter), 'wb') as f:
-                    pickle.dump(augmented_train_states[(counter-1)*num:counter*num], f)
-
-                with open('data/augmented_train_onehot_'+str(counter), 'wb') as f:
-                    pickle.dump(augmented_train_onehot[(counter-1)*num:counter*num], f)
-
-                with open('data/augmented_train_inventories_'+str(counter), 'wb') as f:
-                    pickle.dump(augmented_train_inventories[(counter-1)*num:counter*num], f)
-
-                with open('data/augmented_train_actions_'+str(counter), 'wb') as f:
-                    pickle.dump(augmented_train_actions[(counter-1)*num:counter*num], f)
-
-                with open('data/augmented_train_goals_'+str(counter), 'wb') as f:
-                    pickle.dump(augmented_train_goals[(counter-1)*num:counter*num], f)    
-                
-                with open('data/augmented_train_instructions_'+str(counter), 'wb') as f:
-                    pickle.dump(augmented_train_instructions[(counter-1)*num:counter*num], f)    
-            
-                counter = counter + 1
-
-
-        with open('data/augmented_train_states_'+str(counter), 'wb') as f:
-            pickle.dump(augmented_train_states[(counter-1)*num:], f)
-
-        with open('data/augmented_train_onehot_'+str(counter), 'wb') as f:
-            pickle.dump(augmented_train_onehot[(counter-1)*num:], f)
-
-        with open('data/augmented_train_inventories_'+str(counter), 'wb') as f:
-            pickle.dump(augmented_train_inventories[(counter-1)*num:], f)
-
-        with open('data/augmented_train_actions_'+str(counter), 'wb') as f:
-            pickle.dump(augmented_train_actions[(counter-1)*num:], f)
-
-        with open('data/augmented_train_goals_'+str(counter), 'wb') as f:
-            pickle.dump(augmented_train_goals[(counter-1)*num:], f)    
-        
-        with open('data/augmented_train_instructions_'+str(counter), 'wb') as f:
-            pickle.dump(augmented_train_instructions[(counter-1)*num:], f)    
-
-
-        print("done augmenting") 
-        '''
 
     # input: multi-word crafting item string
     # output: summed glove word embedding (50d)
@@ -266,9 +114,7 @@ class CraftingDataset(Dataset):
             return goal_embedding
 
     def get_inventory_embedding(self, inventory):
-
         
-        #summed inventory
         inventory_embedding = np.zeros((self.embed_dim), dtype=np.float32)
 
         first = True
@@ -283,20 +129,8 @@ class CraftingDataset(Dataset):
                     inventory_embedding = inventory_embedding + self.get_summed_embedding(item)
 
         return inventory_embedding
-        '''
-
-        inventory_embedding = np.zeros((10,self.embed_dim), dtype=np.float32)
-
-        count = 0
-        for item in inventory:
-            if inventory[item] > 0:
-                inventory_embedding[count] = self.get_summed_embedding(item)
-                count = count + 1
-        return inventory_embedding
-        '''
 
 
-    #TODO: later when adding traces, add stop action at the end
     def one_hot_actions(self, action):
 
         if action == 'up':
@@ -317,25 +151,6 @@ class CraftingDataset(Dataset):
             return np.array([0])
         elif action == 'stop':
             return np.array([8])
-
-        # if action == 'up':
-        #     return np.array([1, 0, 0, 0, 0, 0, 0, 0])
-        # elif action == 'down':
-        #     return np.array([0, 1, 0, 0, 0, 0, 0, 0])
-        # elif action == 'left':
-        #     return np.array([0, 0, 1, 0, 0, 0, 0, 0])
-        # elif action == 'right':
-        #     return np.array([0, 0, 0, 1, 0, 0, 0, 0])
-        # elif action == 'toggle_switch':
-        #     return np.array([0, 0, 0, 0, 1, 0, 0, 0])
-        # elif action == 'grab':
-        #     return np.array([0, 0, 0, 0, 0, 1, 0, 0])
-        # elif action == 'mine':
-        #     return np.array([0, 0, 0, 0, 0, 0, 1, 0])
-        # elif action == 'craft':
-        #     return np.array([0, 0, 0, 0, 0, 0, 0, 1])
-        # elif action == 'stop':
-        #     return np.array([8])
 
     def one_hot_grid(self, grid):
 
@@ -366,12 +181,6 @@ class CraftingDataset(Dataset):
 
     def __getitem__(self, index):
 
-        # switch this so that it does it all in the beginning, precompute all of this.
-        #states_onehot = torch.Tensor(self.one_hot_grid(self.train_states[index]))
-        #states_embedding = torch.Tensor(self.get_grid_embedding(self.train_states[index]))
-        #action = torch.Tensor(self.one_hot_actions(self.train_actions[index]))
-        #goal = torch.Tensor(self.get_goal_embedding(self.train_goals[index]))
-
         states_embedding = torch.Tensor(self.train_states_embedding[index])
         states_onehot = torch.Tensor(self.train_states_onehot[index])
         action = torch.Tensor(self.train_actions_onehot[index])
@@ -388,7 +197,7 @@ class CraftingDataset(Dataset):
             target = torch.Tensor(instruction)
         except:
 
-            index = index + 10 # try using the neighboring example instead.. let's see if this breaks. 
+            index = index + 10 # in case there is an error
 
             states_embedding = torch.Tensor(self.train_states_embedding[index])
             states_onehot = torch.Tensor(self.train_states_onehot[index])
@@ -404,18 +213,10 @@ class CraftingDataset(Dataset):
             instruction.append(vocab('<end>'))
             target = torch.Tensor(instruction)
 
-            # instruction.append(vocab('<start>'))
-            # instruction = [self.vocab('<unk>')]
-            # instruction.append(vocab('<end>'))
-            # target = torch.Tensor(instruction)
-
-        #print(states_onehot.size(), states_embedding.size(), action.size(), goal.size())
-
         return states_onehot, states_embedding, inventory, action, goal, target
 
     def __len__(self):
         return len(self.train_states)
-        #return self.train_states.shape[0]
 
 def collate_fn(data):
 
@@ -723,38 +524,19 @@ elif not skip and constructed:
     vocab_weights = torch.Tensor(vocab_weights).to(device)
 
 
-lstm_embed_dim = 32 #16
-
-#model = LanguageNetv1(len(vocab), lstm_embed_dim)
-#model = LanguageNetv2(len(vocab), embed_dim, vocab_weights)
-#model = LanguageWithAttention(len(vocab), embed_dim, vocab_weights)
-#model = LanguageWithAttentionGLOVE(len(vocab), embed_dim, vocab_weights)
-# model = LanguageWithAttentionSUM(len(vocab), embed_dim, vocab_weights)
-# model.to(device)
-# model.load_state_dict(torch.load("TRAINED_MODELS/LanguageWithAttentionSUM_adam.pt"))
-# model.eval()
-# for params in model.parameters():
-#     params.requires_grad = False
-#parameters1 = filter(lambda p: p.requires_grad, model.parameters()) # MAYBE CHANGE THIS FOR OTHER ONE!
-#optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-
-model1 = SimpleNetwork(embed_dim)
-model1.to(device)
-criterion1 = nn.CrossEntropyLoss().to(device)
-parameters = filter(lambda p: p.requires_grad, model1.parameters())
-optimizer1 = torch.optim.Adam(parameters, lr=0.001)
-
-#optimizer = torch.optim.Adam(parameters1, lr=0.001) # this is old one
-#criterion = nn.CrossEntropyLoss()
-#optimizer = torch.optim.RMSprop(parameters1, lr=1e-2)
-#optimizer = torch.optim.Adam(parameters1, lr=0.001)
-#new_criterion = nn.MSELoss()
+lstm_embed_dim = 32
 
 train_loss = []
 train_loss1 = []
 val_loss = []
 val_loss1 = []
 
+
+model1 = SimpleNetwork(embed_dim)
+model1.to(device)
+criterion1 = nn.CrossEntropyLoss().to(device)
+parameters = filter(lambda p: p.requires_grad, model1.parameters())
+optimizer1 = torch.optim.Adam(parameters, lr=0.001)
 
 model2 = StateAutoencoder()
 model2.to(device)
@@ -1380,22 +1162,12 @@ def validate_game_play():
     results = []
     for i in range(100):
         res = play_game_w_language_auto(model2, model1, glove, embed_dim, vocab, device)
-        #res, sentences = ply_game_w_language_glove(model, model1, glove, embed_dim, vocab, device) 
-        #res, sentences = play_game_w_language_v3(model, model1, glove, embed_dim, vocab, device) 
-        #res, sentences = play_game_w_language_v2(model, model1, glove, embed_dim, vocab, device) 
         results.append(res)
-        #if res:
-        #    print('generated sentences', sentences)
 
     print(sum(results), 100)
     return sum(results)
 
 
-#train.
-
-#subset out a portion.. 
-
-#dset = PremadeCraftingDataset(embed_dim, train_states_embedding, train_states_onehot, train_inventories, train_actions, train_goals, train_instructions, vocab)
 dset = CraftingDataset(embed_dim, train_states, train_inventories, train_actions, train_goals, train_instructions, vocab)
 train_loader = DataLoader(dset,
                           batch_size=128,
@@ -1404,16 +1176,7 @@ train_loader = DataLoader(dset,
                           pin_memory=True,
                           collate_fn=collate_fn # only if reading instructions too
                          )
-'''
-dset1 = CraftingDataset(embed_dim, test_states, test_inventories, test_actions, test_goals, test_instructions, vocab)
-val_loader = DataLoader(dset1,
-                          batch_size=128,
-                          shuffle=True,
-                          num_workers=0, 
-                          pin_memory=True,
-                          collate_fn=collate_fn
-                         )
-'''
+
 os.system("rm loss.txt")
 
 epochs = 25
@@ -1425,14 +1188,6 @@ for epoch in range(epochs):
     rewards.append(tot_rewards)
 
 print(rewards)
-    
-    
-#t = [i+1 for i in range(epochs)]
-#plt.plot(t, train_loss, 'r')
-#plt.plot(t, val_loss, 'b')
-#plt.plot(t, train_loss1, 'g')
-#plt.plot(t, val_loss1, 'c')
-#plt.savefig('training_results_hierarchy.png')
 
 torch.save(model2.state_dict(), "TRAINED_MODELS/StateAutoencoder_both1_05.pt")
 torch.save(model1.state_dict(), "TRAINED_MODELS/SimpleNetwork_autoencoder1_05.pt")

@@ -1,5 +1,3 @@
-
-#mazebase imports
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -15,7 +13,6 @@ import mazebasev2.lib.mazebase.games as games
 from mazebasev2.lib.mazebase.games import featurizers
 
 from mazebasev2.lib.mazebase.items.terrain import CraftingItem, CraftingContainer, ResourceFont, Block, Water, Switch, Door
-#from mazebasev2.lib.mazebase.games.crafting_based_games import CraftingAgent
 from mazebasev2.lib.mazebase.items import agents
 
 import copy
@@ -35,21 +32,12 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-# # DATABASE STUFF
-# app.config.from_object(os.environ['APP_SETTINGS'])
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# db = SQLAlchemy(app)
-
-# Example
-#from model import Book
-
 #Read links
-links = [line.rstrip('\n') for line in open('labeled_links_1')]
+links = [line.rstrip('\n') for line in open('misc/labeled_links_1')]
 
 #Read item list
-items = [line.rstrip('\n') for line in open('labeled_names')]
+items = [line.rstrip('\n') for line in open('misc/labeled_names')]
 
-##NEED TO FIX THIS!!
 
 link_lookup = {}
 
@@ -74,7 +62,7 @@ game_count = {}
 code_dict = {}
 users = {}
 
-with open('codes_1.csv') as csv_file:
+with open('misc/codes_1.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     for row in csv_reader:
       code_dict[row[0]] = '0'
@@ -85,35 +73,11 @@ name = ''
 def index():
   return render_template('index.html')
 
-def add_to_db(player1, entrance_code, board, move, action, timestamp):
-
-    return
-
-    player1 = player1 + "." + entrance_code
-
-    print(player1, move)
-
-    try:
-        book=Book(
-            player1=player1,
-            board=board,
-            move=move,
-            action=action,
-            timestamp=timestamp
-        )
-        db.session.add(book)
-        db.session.commit()
-        return True
-    except Exception as e:
-      return False
 
 def add_to_file(player1, entrance_code, board, action, timestamp):
 
   with open("log.txt", "a") as myfile:
     myfile.write(player1 + ',' + entrance_code + ',' + str(board) + ',' + action + ',' + timestamp + '\n')
-
-  # add to file.
-  os.system("./../mazebase_ upload --parent 1v4wh1H8PS7MM57g-_tcSHuVnmJZ5iXEL log.txt")
 
 
 @app.route('/add_message', methods=['POST'])
@@ -131,7 +95,6 @@ def add_message():
   print('adding', player1, message)
 
   add_to_file(player1, code, message, '2', str(time.time()))
-  #add_to_db(player1, code, 'NONE','2', message, str(time.time()))
 
   return jsonify(result={"status": 200})
 
@@ -158,7 +121,6 @@ def play():
   global code
   code = request.args.get('code')
   add_to_file(name, code, 'NONE', '0', str(time.time()))
-  #add_to_db(name, code, 'NONE',  '0', 'NONE', str(time.time()))
   return render_template('play_v4.html')
 
 @app.route('/instruction')
@@ -167,7 +129,6 @@ def instruction():
   global code
   name = request.args.get('username')
   code = request.args.get('code')
-  # return render_template('instruction.html')
 
   if code in code_dict and code_dict[code] == '0':
     code_dict[code] = '1'
@@ -273,14 +234,6 @@ def start_game():
     else:
       yaml_file = 'mazebasev2/options/knowledge_planner/short_task.yaml'
       game_count[(player1, entrance_code)] = 1
-  
-  # yaml_file = 'mazebasev2/options/knowledge_planner/long_task.yaml'
-  # game_count[(player1, entrance_code)] = 2
-
-  # if player1 not in users or random.uniform(0, 1) < 0.4: # or random change
-  #   yaml_file = 'mazebasev2/options/knowledge_planner/short_task.yaml'
-  #   users[player1] = 1
-  #   game_count[(player1, entrance_code)] = 1
 
   with open(yaml_file, 'r') as handle:
     options = yaml.load(handle)
@@ -315,7 +268,6 @@ def start_game():
   game_observe["recipe"] = game.game.recipe
 
   add_to_file(player1, entrance_code, game_observe, '1', str(time.time()))
-  #add_to_db(player1, entrance_code, game, '1', 'NONE', str(time.time()))
 
   temp = game.display() 
   symbol_map, color_map, agent_loc = create_symbol_color_maps(temp)
@@ -358,8 +310,6 @@ def make_move():
 
   add_to_file(player1, entrance_code, game_observe, '3', str(time.time()))
 
-  #add_to_db(player1, entrance_code, game, '3', action, str(time.time()))
-
   is_complete = False
   rand_num = 2
 
@@ -372,17 +322,13 @@ def make_move():
     num_with_zeros = '{:06}'.format(num)
     code = str(num)
 
-  ## ADD THIS CHECK HERE... 
   if game.is_over() or rand_num == 1:
     is_complete = True
-    #ADD THE CODE IN DB FOR CROSS REFERNECE.
     add_to_file(player1, entrance_code, code, '5', str(time.time()))
-    #add_to_db(player1, entrance_code, 'NONE', '5', code, str(time.time()))
 
 
   return jsonify(result=symbol_map, complete=is_complete, code=code, color=color_map, inventory=game.game.inventory, agent=agent_loc)
 
-  #return jsonify(result={"status": 200})
 
 #restart
 @app.route('/restart_game', methods=['GET', 'POST'])
@@ -395,12 +341,9 @@ def restart_game():
   entrance_code = json_data["b"]
 
   add_to_file(player1, entrance_code, 'NONE', '4', str(time.time()))
-  #add_to_db(player1, entrance_code, '4', 'NONE', str(time.time()))
 
-  #return jsonify(result={"status": 200})
 
 if __name__ == '__main__':
-    #app.run()
     app.run(host='0.0.0.0', port=5005)
 
 name = ''
