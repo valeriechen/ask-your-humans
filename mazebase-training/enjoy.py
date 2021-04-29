@@ -41,7 +41,7 @@ args = parser.parse_args()
 args.det = not args.non_det
 
 
-name = "compiled_dataset_08131950" #add 50 back in
+name = "compiled_dataset_08131950" 
 embed_dim = 300 
 embed_size = embed_dim
 
@@ -77,7 +77,7 @@ obs = env.reset()
 
 count = 0
 for i in range(100):
-    for step in range(98):
+    for step in range(100):
 
         with torch.no_grad():
             value, action, _, recurrent_hidden_states = actor_critic.act(
@@ -87,11 +87,8 @@ for i in range(100):
         obs, reward, done, _ = env.step(action)
 
         if done:
-            print(count)
             count = count + 1
-            print("-----")
             break
     if not done:
-        print("-----")
         obs = env.reset()
 print(count)

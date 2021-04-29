@@ -125,27 +125,8 @@ def one_hot_grid(grid, glove, embed_size):
 # generate a new mazebase game
 
 def generate_new_game():
-
-    #pick a random yaml file: 
-
-    #num = random.randint(1,4)
-    #num =  2
-
-    # if num == 1:
-    #   yaml_file = 'mazebasev2/options/knowledge_planner/length45common.yaml'
-    # elif num == 2:
-    #   yaml_file = 'mazebasev2/options/knowledge_planner/length12task.yaml'
-    # else:
     
-    #yaml_file = 'mazebasev2/options/knowledge_planner/length3task.yaml' 
-    #yaml_file = 'mazebasev2/options/knowledge_planner/length1task.yaml'
-    #yaml_file = 'mazebasev2/options/knowledge_planner/length2task.yaml'
-    #yaml_file = 'mazebasev2/options/knowledge_planner/length45common.yaml'
-    #yaml_file = 'mazebasev2/options/knowledge_planner/length3task.yaml' 
-    #yaml_file = 'mazebasev2/options/knowledge_planner/length12task.yaml'
-    #yaml_file =  'mazebasev2/options/knowledge_planner/minimum_viable_planning.yaml'
-    #yaml_file =  'mazebasev2/options/knowledge_planner/minimum_viable_rl.yaml'
-    yaml_file =  'mazebasev2/options/knowledge_planner/unseen_tasks.yaml'
+    yaml_file =  'mazebasev2/options/knowledge_planner/' + filename
 
     #yaml_file = 'mazebasev2/options/knowledge_planner/length12task_distractor.yaml'
     with open(yaml_file, 'r') as handle:
@@ -1003,7 +984,7 @@ def play_game_by_hand_glove():
 #load_model_play_game_with_lang_glove()
 #load_model_play_game_with_lang() #this is to evaluate action conditioned on language
 #load_model_play_game() # this is to evaluate action
-play_game_by_hand() # this is to evaluate language
+#play_game_by_hand() # this is to evaluate language
 #play_game_by_hand_test() # this is to evaluate language, get the top5 of language
 #play_game_by_hand_glove() #this is to evaluate language, using predicted glove embeddings.
 #play_game()

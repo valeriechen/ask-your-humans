@@ -19,4 +19,5 @@ python3 app_nodb.py
 ```
 
 You should have the entrance codes generated beforehand and uploaded to AMT for HITs.
-Replace recipe_list and recipe_names if you plan to collect different recipes than the ones we provide.
+
+We hosted the app on an EC2 instance so that the server would be continuously running while annotations were collected.

@@ -138,18 +138,6 @@ class CraftingDataset(Dataset):
 
         return inventory_embedding
         
-        '''
-        inventory_embedding = np.zeros((10,self.embed_dim), dtype=np.float32)
-
-        count = 0
-        for item in inventory:
-            if inventory[item] > 0:
-                inventory_embedding[count] = self.get_summed_embedding(item)
-                count = count + 1
-        return inventory_embedding
-        '''
-
-    #TODO: later when adding traces, add stop action at the end
     def one_hot_actions(self, action):
 
         if action == 'up':
@@ -263,149 +251,41 @@ else:
 import torch
 from torch import nn
 
-#name = "example"
-name = "compiled_dataset_08131950"
-constructed = True
-skip = False
+name = ADD_DATASET_HERE
 embed_dim = 300
 
 
-## for training
+with open(name+'_states', 'rb') as f:
+    train_states = pickle.load(f)
 
-if not skip and not constructed:
-    train_states, train_inventories, train_actions, train_goals, train_instructions, test_states, test_inventories, test_actions, test_goals, test_instructions, all_instructions = read_dataset('data/'+name+'.json', 0.8)
+with open(name+'inventories', 'rb') as f:
+    train_inventories = pickle.load(f)
 
-    with open('data/'+name+'_train_states', 'wb') as f:
-        pickle.dump(train_states, f)
+with open(name+'actions', 'rb') as f:
+    train_actions = pickle.load(f)
 
-    with open('data/'+name+'_train_inventories', 'wb') as f:
-        pickle.dump(train_inventories, f)
+with open(name+'goals', 'rb') as f:
+    train_goals = pickle.load(f)
 
-    with open('data/'+name+'_train_actions', 'wb') as f:
-        pickle.dump(train_actions, f)
+with open(name+'instructions', 'rb') as f:
+    train_instructions = pickle.load(f)
 
-    with open('data/'+name+'_train_goals', 'wb') as f:
-        pickle.dump(train_goals, f)
+with open(name+'all_instructions', 'rb') as f:
+    all_instructions = pickle.load(f)
 
-    with open('data/'+name+'_train_instructions', 'wb') as f:
-        pickle.dump(train_instructions, f)
+vocab, vocab_weights = build_vocabulary(all_instructions, name, embed_dim)
 
-    with open('data/'+name+'_test_states', 'wb') as f:
-        pickle.dump(test_states, f)
+vocab.add_word('<pad>')
+vocab.add_word('<start>')
+vocab.add_word('<end>')
+vocab.add_word('<unk>')
 
-    with open('data/'+name+'_test_inventories', 'wb') as f:
-        pickle.dump(test_inventories, f)
-
-    with open('data/'+name+'_test_actions', 'wb') as f:
-        pickle.dump(test_actions, f)
-
-    with open('data/'+name+'_test_goals', 'wb') as f:
-        pickle.dump(test_goals, f)
-
-    with open('data/'+name+'_test_instructions', 'wb') as f:
-        pickle.dump(test_instructions, f)
-
-    build_vocabulary(all_instructions, name)
-elif not skip and constructed:
-
-    with open('data/'+name+'_1_train_states', 'rb') as f:
-        temp_train_states = pickle.load(f)
-
-    with open('data/'+name+'_1_train_inventories', 'rb') as f:
-        temp_train_inventories = pickle.load(f)
-
-    with open('data/'+name+'_1_train_actions', 'rb') as f:
-        temp_train_actions = pickle.load(f)
-
-    with open('data/'+name+'_1_train_goals', 'rb') as f:
-        temp_train_goals = pickle.load(f)
-
-    with open('data/'+name+'_train_instructions', 'rb') as f:
-        temp_train_instructions = pickle.load(f)
-
-    #weights, vocab = load_vocabulary(name)
+#comment back when we define 
+vocab_weights = torch.Tensor(vocab_weights).to(device)
 
 
-    # with open('data/'+name+'_train_states', 'rb') as f:
-    #     temp_train_states = pickle.load(f)
 
-    # with open('data/'+name+'_train_inventories', 'rb') as f:
-    #     temp_train_inventories = pickle.load(f)
-
-    # with open('data/'+name+'_train_actions', 'rb') as f:
-    #     temp_train_actions = pickle.load(f)
-
-    # with open('data/'+name+'_train_goals', 'rb') as f:
-    #     temp_train_goals = pickle.load(f)
-
-    # with open('data/'+name+'_train_instructions', 'rb') as f:
-    #     temp_train_instructions = pickle.load(f)
-
-    keep_list = ['Cobblestone Stairs', 'Leather Boots', 'Iron Ore']
-
-    fiveactions = []
-    onefouractions1 = []
-    onefouractions2 = []
-    onefouractions3 = []
-    for i in range(len(temp_train_goals)):
-        temp_goal_split = temp_train_goals[i].split(' ')
-        temp_goal = temp_goal_split[1]+ " " + temp_goal_split[2]
-
-        if temp_goal == 'Cobblestone Stairs':
-            onefouractions1.append(i)
-        elif temp_goal == 'Leather Boots':
-            onefouractions2.append(i)
-        elif temp_goal == 'Iron Ore':
-            onefouractions3.append(i)
-        else:
-            fiveactions.append(i)
-
-    #total = len(onefouractions)
-    #print(total)
-    #limit = int(0.01*total)
-    #print(limit)
-
-    #keep_list = random.sample(onefouractions, limit) + fiveactions
-    keep_list = fiveactions + random.sample(onefouractions1, int(0.05*len(onefouractions1))) + random.sample(onefouractions2, int(0.01*len(onefouractions2))) + random.sample(onefouractions3, int(0.01*len(onefouractions3)))
-
-    train_actions = []
-    train_states = []
-    train_instructions = []
-    train_goals = []
-    train_inventories  = []
-
-    #remove "stops"
-    for i in range(len(temp_train_actions)):
-        if temp_train_actions[i] != 'stop' and i in keep_list:  # check if this is right..
-            train_actions.append(temp_train_actions[i])
-            train_states.append(temp_train_states[i])
-            train_instructions.append(temp_train_instructions[i])
-            train_goals.append(temp_train_goals[i])
-            train_inventories.append(temp_train_inventories[i])
-
-    #weights, vocab = load_vocabulary(name)
-
-    with open('data/'+name+'_all_instructions', 'rb') as f:
-        all_instructions = pickle.load(f)
-
-    vocab, weights = build_vocabulary(all_instructions, name, embed_dim)
-
-    vocab.add_word('<pad>')
-    vocab.add_word('<start>')
-    vocab.add_word('<end>')
-    vocab.add_word('<unk>')
-
-
-#model = AllObsPredict(embed_dim) # kenny's
-
-#model = StateGoalNetv2(embed_dim) # add
 model = StateGoalNetv1(embed_dim) # concat
-
-#model = StateGoalInstructionv1Net(len(vocab), 256)
-
-#if torch.cuda.device_count() > 1:
-#  model = nn.DataParallel(model)
-
 model.to(device)
 
 optimizer = torch.optim.Adam(model.parameters(), lr=0.003)
@@ -415,7 +295,6 @@ train_loss = []
 val_loss = []
 
 
-#used for normal bc
 def train_step(epoch):
 
     log_size = 500
@@ -465,52 +344,6 @@ def train_step(epoch):
 
     train_loss.append(np.mean(all_losses))
 
-def validate_step(epoch):
-
-    model.eval()
-
-    log_size = 100
-
-    all_losses = []
-
-    running_loss = 0.0
-    for i, data in enumerate(val_loader, 0):
-
-        #states_onehot, states_embedding, action, goal = data
-
-        states_onehot, states_embedding, inventory, action, goal, instructions, lengths = data
-
-        states_onehot = states_onehot.to(device)
-        states_embedding = states_embedding.to(device)
-        action = action.to(device, dtype=torch.int64)
-        action = action.squeeze(1)
-        goal = goal.to(device)
-        inventory = inventory.to(device)
-
-        instructions = instructions.to(device)
-
-        outputs = model(states_embedding, states_onehot, inventory, goal)
-
-        #outputs = model(states_embedding, states_onehot, inventory, goal, instructions, lengths)
-
-        loss = criterion(outputs, action)
-
-        running_loss += loss.item()
-
-        if i % log_size == log_size-1:   
-            all_losses.append(running_loss / log_size)
-
-            #writer.add_scalar('Loss/train', np.random.random(), n_iter)
-            print('VAL: [%d, %5d] loss: %.3f' %
-                  (epoch + 1, i + 1, running_loss / log_size))
-            with open("loss.txt", "a") as myfile:
-                myfile.write('VAL: [%d, %5d] loss: %.3f \n' %
-                  (epoch + 1, i + 1, running_loss / log_size))
-
-            running_loss = 0.0
-
-    val_loss.append(np.mean(all_losses))
-
 
 def validate_game():
 
@@ -530,10 +363,7 @@ def validate_game():
     print(sum(results))
     return sum(results)
 
-    #print(sum(results), 'out of 15')
 
-
-#train.
 dset = CraftingDataset(embed_dim, train_states, train_inventories, train_actions, train_goals, train_instructions, vocab)
 train_loader = DataLoader(dset,
                           batch_size=128,
@@ -556,11 +386,6 @@ for epoch in range(epochs):
 
 print(rewards)
 
-    
-t = [i+1 for i in range(epochs)]
-plt.plot(t, train_loss, 'r')
-#plt.plot(t, val_loss, 'b')
-plt.savefig('training_results.png')
 
 torch.save(model.state_dict(), 'TRAINED_MODELS/TRAINED_MODELS/StateGoalNetv1_300_05per.pt')
 

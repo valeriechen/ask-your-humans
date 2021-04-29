@@ -167,25 +167,6 @@ class CraftingDataset(Dataset):
         elif action == 'stop':
             return np.array([8])
 
-        # if action == 'up':
-        #     return np.array([1, 0, 0, 0, 0, 0, 0, 0])
-        # elif action == 'down':
-        #     return np.array([0, 1, 0, 0, 0, 0, 0, 0])
-        # elif action == 'left':
-        #     return np.array([0, 0, 1, 0, 0, 0, 0, 0])
-        # elif action == 'right':
-        #     return np.array([0, 0, 0, 1, 0, 0, 0, 0])
-        # elif action == 'toggle_switch':
-        #     return np.array([0, 0, 0, 0, 1, 0, 0, 0])
-        # elif action == 'grab':
-        #     return np.array([0, 0, 0, 0, 0, 1, 0, 0])
-        # elif action == 'mine':
-        #     return np.array([0, 0, 0, 0, 0, 0, 1, 0])
-        # elif action == 'craft':
-        #     return np.array([0, 0, 0, 0, 0, 0, 0, 1])
-        # elif action == 'stop':
-        #     return np.array([8])
-
     def one_hot_grid(self, grid):
 
         grid_embedding_array = np.zeros((5, 5, 7), dtype=np.float32)
@@ -279,301 +260,49 @@ else:
 import torch
 from torch import nn
 
-#name = "example"
-name = "compiled_dataset_08131950" #add 50 back in
-constructed = True
-skip = False
-embed_dim = 300 # switch this later!!
-building_vocab = False
-augmented = False
-without_stop = True
+import torch
+from torch import nn
 
+name = ADD_DATASET_HERE
+embed_dim = 300
 
-if building_vocab:
 
-    # for experimenting only.
+with open(name+'_states', 'rb') as f:
+    train_states = pickle.load(f)
 
-    with open('data/'+name+'50_all_instructions', 'rb') as f:
-        all_instructions = pickle.load(f)
+with open(name+'inventories', 'rb') as f:
+    train_inventories = pickle.load(f)
 
-    build_vocabulary(all_instructions, name, embed_dim)
+with open(name+'actions', 'rb') as f:
+    train_actions = pickle.load(f)
 
-elif augmented:
-    print("using augmented")
+with open(name+'goals', 'rb') as f:
+    train_goals = pickle.load(f)
 
-    # read all of the parts in... 
+with open(name+'instructions', 'rb') as f:
+    train_instructions = pickle.load(f)
 
-    total = 1622648
-    num = 50000
+with open(name+'all_instructions', 'rb') as f:
+    all_instructions = pickle.load(f)
 
-    train_states_embedding = np.zeros((total, 5, 5, 300), dtype=np.float32)
-    train_states_onehot = np.zeros((total, 5, 5, 7), dtype=np.float32)
-    train_actions = np.zeros((total,1), dtype=np.float32)
-    train_goals = np.zeros((total,300), dtype=np.float32)
-    train_inventories = np.zeros((total ,300), dtype=np.float32)
-    train_instructions = None
+vocab, vocab_weights = build_vocabulary(all_instructions, name, embed_dim)
 
-    i = 0
-    for counter in range(total):
-        if counter > (i+1) * num:
-            print(i)
-            with open('data/augmented_train_states_'+str(i+1), 'rb') as f:
-                train_states_embedding[i*50000:(i+1)*50000] = pickle.load(f)
-            with open('data/augmented_train_onehot_'+str(i+1), 'rb') as f:
-                train_states_onehot[i*50000:(i+1)*50000] = pickle.load(f)
-            with open('data/augmented_train_inventories_'+str(i+1), 'rb') as f:
-                train_inventories[i*50000:(i+1)*50000] = pickle.load(f)
-            with open('data/augmented_train_goals_'+str(i+1), 'rb') as f:
-                train_goals[i*50000:(i+1)*50000] = pickle.load(f)
-            with open('data/augmented_train_actions_'+str(i+1), 'rb') as f:
-                train_actions[i*50000:(i+1)*50000] = pickle.load(f)
-            with open('data/augmented_train_instructions_'+str(i+1), 'rb') as f:
-                if train_instructions is None:
-                    train_instructions = pickle.load(f)
-                else:
-                    temp = pickle.load(f)
-                    train_instructions = np.concatenate((train_instructions, temp), axis=0)
-            i = i + 1
+vocab.add_word('<pad>')
+vocab.add_word('<start>')
+vocab.add_word('<end>')
+vocab.add_word('<unk>')
 
-    # add the 33rd one in..
-    with open('data/augmented_train_states_'+str(i+1), 'rb') as f:
-        train_states_embedding[i*50000:] = pickle.load(f)
-    with open('data/augmented_train_onehot_'+str(i+1), 'rb') as f:
-        train_states_onehot[i*50000:] = pickle.load(f)
-    with open('data/augmented_train_inventories_'+str(i+1), 'rb') as f:
-        train_inventories[i*50000:] = pickle.load(f)
-    with open('data/augmented_train_goals_'+str(i+1), 'rb') as f:
-        train_goals[i*50000:] = pickle.load(f)
-    with open('data/augmented_train_actions_'+str(i+1), 'rb') as f:
-        train_actions[i*50000:] = pickle.load(f)
-    with open('data/augmented_train_instructions_'+str(i+1), 'rb') as f:
-        train_instructions = np.concatenate((train_instructions, temp), axis=0)
+temp = np.zeros((1,300), dtype=np.float32)
 
-
-    with open('data/'+name+'_all_instructions', 'rb') as f:
-        all_instructions = pickle.load(f)
-
-    vocab, vocab_weights = build_vocabulary(all_instructions, name, embed_dim)
-
-    vocab.add_word('<pad>')
-    vocab.add_word('<start>')
-    vocab.add_word('<end>')
-    vocab.add_word('<unk>')
-
-    #comment back when we define 
-    vocab_weights = torch.Tensor(vocab_weights).to(device)
-
-#augment...
-elif skip and constructed:
-
-    with open('data/'+name+'_1_train_states', 'rb') as f:
-        train_states = pickle.load(f)
-
-    with open('data/'+name+'_1_train_inventories', 'rb') as f:
-        train_inventories = pickle.load(f)
-
-    with open('data/'+name+'_1_train_actions', 'rb') as f:
-        train_actions = pickle.load(f)
-
-    with open('data/'+name+'_1_train_goals', 'rb') as f:
-        train_goals = pickle.load(f)
-
-    with open('data/'+name+'_train_instructions', 'rb') as f:
-        train_instructions = pickle.load(f)
-
-
-    augmented_train_states = np.repeat(train_states, repeats=8, axis=0)
-    augmented_train_inventories = np.repeat(train_inventories, repeats=8, axis=0)
-    augmented_train_actions = np.repeat(train_actions, repeats=8, axis=0)
-    augmented_train_goals = np.repeat(train_goals, repeats=8, axis=0)
-    augmented_train_instructions = np.repeat(train_instructions, repeats=8, axis=0)
-
-    for i in range(0, augmented_train_states.shape[0], 8):
-        augmented_train_states[i+1] = rotate_board(augmented_train_states[i+1], 90, False)
-        augmented_train_states[i+2] = rotate_board(augmented_train_states[i+2], 180, False)
-        augmented_train_states[i+3] = rotate_board(augmented_train_states[i+3], 270, False)
-        augmented_train_states[i+4] = rotate_board(augmented_train_states[i+4], 0, True)
-        augmented_train_states[i+5] = rotate_board(augmented_train_states[i+5], 90, True)
-        augmented_train_states[i+6] = rotate_board(augmented_train_states[i+6], 180, True)
-        augmented_train_states[i+7] = rotate_board(augmented_train_states[i+7], 270, True)
-
-        augmented_train_actions[i+1] = rotate_action(augmented_train_actions[i+1], 90, False)
-        augmented_train_actions[i+2] = rotate_action(augmented_train_actions[i+2], 180, False)
-        augmented_train_actions[i+3] = rotate_action(augmented_train_actions[i+3], 270, False)
-        augmented_train_actions[i+4] = rotate_action(augmented_train_actions[i+4], 0, True)
-        augmented_train_actions[i+5] = rotate_action(augmented_train_actions[i+5], 90, True)
-        augmented_train_actions[i+6] = rotate_action(augmented_train_actions[i+6], 180, True)
-        augmented_train_actions[i+7] = rotate_action(augmented_train_actions[i+7], 270, True)
-
-elif without_stop:
-
-    with open('data/'+name+'_1_train_states', 'rb') as f:
-        temp_train_states = pickle.load(f)
-
-    with open('data/'+name+'_1_train_inventories', 'rb') as f:
-        temp_train_inventories = pickle.load(f)
-
-    with open('data/'+name+'_1_train_actions', 'rb') as f:
-        temp_train_actions = pickle.load(f)
-
-    with open('data/'+name+'_1_train_goals', 'rb') as f:
-        temp_train_goals = pickle.load(f)
-
-    with open('data/'+name+'_train_instructions', 'rb') as f:
-        temp_train_instructions = pickle.load(f)
-
-    #weights, vocab = load_vocabulary(name)
-
-    train_actions = []
-    train_states = []
-    train_instructions = []
-    train_goals = []
-    train_inventories  = []
-    train_past = []
-
-    fiveactions = []
-    onefouractions1 = []
-    onefouractions2 = []
-    onefouractions3 = []
-    for i in range(len(temp_train_goals)):
-        temp_goal_split = temp_train_goals[i].split(' ')
-        temp_goal = temp_goal_split[1]+ " " + temp_goal_split[2]
-
-        if temp_goal == 'Cobblestone Stairs':
-            onefouractions1.append(i)
-        elif temp_goal == 'Leather Boots':
-            onefouractions2.append(i)
-        elif temp_goal == 'Iron Ore':
-            onefouractions3.append(i)
-        else:
-            fiveactions.append(i)
-
-    percent = 0.1
-    keep_list = fiveactions + random.sample(onefouractions1, int(percent*len(onefouractions1))) + random.sample(onefouractions2, int(percent*len(onefouractions2))) + random.sample(onefouractions3, int(percent*len(onefouractions3)))
-
-    queue = []
-
-    to_append = True
-
-    #remove "stops"
-    for i in range(len(temp_train_actions)):
-        temp_goal_split = temp_train_goals[i].split(' ')
-        temp_goal = temp_goal_split[1]+ " " + temp_goal_split[2]
-
-        if temp_train_actions[i] != 'stop':
-
-            if len(queue) == 0:
-
-                if i in keep_list:
-                    to_append = True
-
-                else:
-                    to_append = False
-
-                curr_index = len(train_actions)-1
-                queue = [curr_index, curr_index, curr_index, curr_index]
-
-            else:
-
-                queue = queue[1:]
-                queue.append(len(train_actions)-2) #add on the previous.. 
-
-            if to_append:
-
-                train_actions.append(temp_train_actions[i])
-                train_states.append(temp_train_states[i])
-                train_instructions.append(temp_train_instructions[i])
-                train_goals.append(temp_train_goals[i])
-                train_inventories.append(temp_train_inventories[i])
-                train_past.append(queue)
-
-        else:
-
-            queue = []
-
-
-    print(len(train_actions))
-
-    #weights, vocab = load_vocabulary(name)
-
-    with open('data/'+name+'_all_instructions', 'rb') as f:
-        all_instructions = pickle.load(f)
-
-    vocab, vocab_weights = build_vocabulary(all_instructions, name, embed_dim)
-
-    vocab.add_word('<pad>')
-    vocab.add_word('<start>')
-    vocab.add_word('<end>')
-    vocab.add_word('<unk>')
-
-    temp = np.zeros((1,300), dtype=np.float32)
-    temp1 = np.random.uniform(-0.01, 0.01, (1,300)).astype("float32")
-    # vocab_weights.append(np.random.uniform(-0.01, 0.01, 300).astype("float32"))
-    # vocab_weights.append(np.zeros(300).astype("float32"))
-
-    vocab_weights = np.concatenate((vocab_weights, temp), axis=0)
-
-    vocab_weights = torch.Tensor(vocab_weights).to(device)
-
-elif not skip and constructed:
-
-    with open('data/'+name+'_1_train_states', 'rb') as f:
-        train_states = pickle.load(f)
-
-    with open('data/'+name+'_1_train_inventories', 'rb') as f:
-        train_inventories = pickle.load(f)
-
-    with open('data/'+name+'_1_train_actions', 'rb') as f:
-        train_actions = pickle.load(f)
-
-    with open('data/'+name+'_1_train_goals', 'rb') as f:
-        train_goals = pickle.load(f)
-
-    with open('data/'+name+'_train_instructions', 'rb') as f:
-        train_instructions = pickle.load(f)
-
-    #weights, vocab = load_vocabulary(name)
-
-    with open('data/'+name+'_all_instructions', 'rb') as f:
-        all_instructions = pickle.load(f)
-
-    vocab, vocab_weights = build_vocabulary(all_instructions, name, embed_dim)
-
-    vocab.add_word('<pad>')
-    vocab.add_word('<start>')
-    vocab.add_word('<end>')
-    vocab.add_word('<unk>')
-
-    #comment back when we define 
-    vocab_weights = torch.Tensor(vocab_weights).to(device)
-
+vocab_weights = np.concatenate((vocab_weights, temp), axis=0)
 
 lstm_embed_dim = 32 #16
-
-#model = LanguageNetv1(len(vocab), lstm_embed_dim)
-#model = LanguageNetv2(len(vocab), embed_dim, vocab_weights)
-#model = LanguageWithAttention(len(vocab), embed_dim, vocab_weights)
-#model = LanguageWithAttentionGLOVE(len(vocab), embed_dim, vocab_weights)
-# model = LanguageWithAttentionSUM(len(vocab), embed_dim, vocab_weights)
-# model.to(device)
-# model.load_state_dict(torch.load("TRAINED_MODELS/LanguageWithAttentionSUM_adam.pt"))
-# model.eval()
-# for params in model.parameters():
-#     params.requires_grad = False
-#parameters1 = filter(lambda p: p.requires_grad, model.parameters()) # MAYBE CHANGE THIS FOR OTHER ONE!
-#optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 model1 = SimpleNetwork(embed_dim)
 model1.to(device)
 criterion1 = nn.CrossEntropyLoss().to(device)
 parameters = filter(lambda p: p.requires_grad, model1.parameters())
 optimizer1 = torch.optim.Adam(parameters, lr=0.001)
-
-#optimizer = torch.optim.Adam(parameters1, lr=0.001) # this is old one
-#criterion = nn.CrossEntropyLoss()
-#optimizer = torch.optim.RMSprop(parameters1, lr=1e-2)
-#optimizer = torch.optim.Adam(parameters1, lr=0.001)
-#new_criterion = nn.MSELoss()
 
 train_loss = []
 train_loss1 = []
@@ -720,20 +449,6 @@ def validate_step(epoch):
     val_loss.append(np.mean(all_losses))
     val_loss1.append(np.mean(all_losses1))
 
-def validate_language():
-
-    model.eval()
-
-    if embed_dim == 50:
-        glove = vocabtorch.GloVe(name='6B', dim=50)
-    else:
-        glove = vocabtorch.GloVe(name='840B', dim=300)
-
-    for i in range(5):
-        generate_lang(model, glove, embed_dim, vocab, device) # prints out 5 sampled languages..
-        #print(lang)
-
-
 def validate_game_play():
 
     model2.eval()
@@ -747,41 +462,18 @@ def validate_game_play():
     results = []
     for i in range(100):
         res = play_game_w_language_state(model2, model1, glove, embed_dim, vocab, device)
-        #res = play_game_w_language_auto(model2, model1, glove, embed_dim, vocab, device)
-        #res, sentences = ply_game_w_language_glove(model, model1, glove, embed_dim, vocab, device) 
-        #res, sentences = play_game_w_language_v3(model, model1, glove, embed_dim, vocab, device) 
-        #res, sentences = play_game_w_language_v2(model, model1, glove, embed_dim, vocab, device) 
         results.append(res)
-        #if res:
-        #    print('generated sentences', sentences)
 
     print(sum(results), 100)
     return sum(results)
 
-
-#train.
-
-#subset out a portion.. 
-
-#dset = PremadeCraftingDataset(embed_dim, train_states_embedding, train_states_onehot, train_inventories, train_actions, train_goals, train_instructions, vocab)
 dset = CraftingDataset(embed_dim, train_states, train_inventories, train_actions, train_goals, train_past, train_instructions, vocab)
 train_loader = DataLoader(dset,
                           batch_size=64,
                           shuffle=True,
                           num_workers=0, 
                           pin_memory=True,
-                          #collate_fn=collate_fn # only if reading instructions too
                          )
-'''
-dset1 = CraftingDataset(embed_dim, test_states, test_inventories, test_actions, test_goals, test_instructions, vocab)
-val_loader = DataLoader(dset1,
-                          batch_size=128,
-                          shuffle=True,
-                          num_workers=0, 
-                          pin_memory=True,
-                          collate_fn=collate_fn
-                         )
-'''
 os.system("rm loss.txt")
 
 epochs = 20
@@ -792,17 +484,6 @@ for epoch in range(epochs):
     #tot_rewards = validate_game_play()
     #rewards.append(tot_rewards)
         
-
-#print(rewards)
-    
-    
-#t = [i+1 for i in range(epochs)]
-#plt.plot(t, train_loss, 'r')
-#plt.plot(t, val_loss, 'b')
-#plt.plot(t, train_loss1, 'g')
-#plt.plot(t, val_loss1, 'c')
-#plt.savefig('training_results_hierarchy.png')
-
 torch.save(model2.state_dict(), "TRAINED_MODELS/StatePredictor_both1_01.pt")
 torch.save(model1.state_dict(), "TRAINED_MODELS/SimpleNetwork_statepred1_01.pt")
 

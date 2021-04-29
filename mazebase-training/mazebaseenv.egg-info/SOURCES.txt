@@ -1,6 +1,0 @@
-setup.py
-mazebaseenv.egg-info/PKG-INFO
-mazebaseenv.egg-info/SOURCES.txt
-mazebaseenv.egg-info/dependency_links.txt
-mazebaseenv.egg-info/requires.txt
-mazebaseenv.egg-info/top_level.txt

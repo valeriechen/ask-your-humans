@@ -15,20 +15,15 @@ torch.multiprocessing.set_start_method("spawn")
 import torch.multiprocessing as mp
 
 from pytorchppo.a2c_ppo_acktr import algo, utils
-#from a2c_ppo_acktr.algo import gail
 from pytorchppo.a2c_ppo_acktr.arguments import get_args
-#from pytorchppo.a2c_ppo_acktr.envs import make_vec_envs
 from envs import make_vec_envs
 from pytorchppo.a2c_ppo_acktr.model import Policy
 from pytorchppo.a2c_ppo_acktr.storage import RolloutStorage
 from pytorchppo.evaluation import evaluate
 
-#import language stuff:
-
 from build_vocab import build_vocabulary, load_vocabulary
 from train_models import StateGoalNet, StateGoalInstructionNet, LanguageNet, ActionNet, LanguageNetv1, ActionNetv1, ActionNet_Allobs, LanguageNetv2, LanguageWithAttention
 import pickle
-#import time
 
 def main():
     args = get_args()
@@ -48,8 +43,8 @@ def main():
     torch.set_num_threads(1)
     device = torch.device("cuda:0" if args.cuda else "cpu")
 
-    name = "compiled_dataset_08131950" #add 50 back in
-    embed_dim = 300 # switch this later!!
+    name = "compiled_dataset_08131950"
+    embed_dim = 300 
     embed_size = embed_dim
 
     with open('data/'+name+'_all_instructions', 'rb') as f:
