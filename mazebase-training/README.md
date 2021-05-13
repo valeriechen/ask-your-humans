@@ -10,7 +10,8 @@ To install requirements:
 pip3 install -r requirements.txt
 ```
 
-The input requires the dataset to be split into the state, action, inventory, and goal. You can download the whole dataset and easily do this.
+The input requires the dataset to be split into the state, action, inventory, and goal. You can download the whole dataset and easily do this or use ours by downloading dataset_split from [here](https://bit.ly/2GXROwf).
+
 
 ## IL Training
 
