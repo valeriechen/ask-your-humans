@@ -41,14 +41,13 @@ args = parser.parse_args()
 args.det = not args.non_det
 
 
-name = "compiled_dataset_08131950" 
 embed_dim = 300 
 embed_size = embed_dim
 
-with open('data/'+name+'_all_instructions', 'rb') as f:
+with open('data/dataset_all_instructions', 'rb') as f:
     all_instructions = pickle.load(f)
 
-vocab, vocab_weights = build_vocabulary(all_instructions, name, embed_dim)
+vocab, vocab_weights = build_vocabulary(all_instructions, 'blah', embed_dim)
 
 vocab.add_word('<pad>')
 vocab.add_word('<start>')

@@ -156,13 +156,12 @@ class MazebaseGame(gym.Env):
 		#yaml_file = 'mazebasev2/options/knowledge_planner/length12345task.yaml'
 		#yaml_file = 'mazebasev2/options/knowledge_planner/length12345task_missing.yaml'
 		
-		# only 3 and only 5 tasks..
 		#yaml_file = 'mazebasev2/options/knowledge_planner/length35task.yaml'
 		#yaml_file = 'mazebasev2/ptions/knowledge_planner/length2task.yaml'
-		#yaml_file = 'mazebasev2/options/knowledge_planner/length1task.yaml'
+		yaml_file = 'mazebasev2/options/knowledge_planner/length1task.yaml'
 		#yaml_file = 'mazebasev2/options/knowledge_planner/length3task.yaml'
 		#yaml_file = 'mazebasev2/options/knowledge_planner/length45common.yaml'
-		yaml_file = 'mazebasev2/options/knowledge_planner/unseen_tasks.yaml'
+		#yaml_file = 'mazebasev2/options/knowledge_planner/unseen_tasks.yaml'
 
 		#yaml_file = 'mazebasev2/options/knowledge_planner/length12task_distractor.yaml'
 

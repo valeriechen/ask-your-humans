@@ -178,10 +178,10 @@ class Crafting(Agent):
     # Grab items (or from font) on agent's square and add to inventory
     def __grab(self):
 
-        print("INVENTORY")
-        for item in self.inventory:
-            feature = item + '_count=' + str(self.inventory[item])
-            print(feature)
+        # print("INVENTORY")
+        # for item in self.inventory:
+        #     feature = item + '_count=' + str(self.inventory[item])
+        #     print(feature)
 
         x, y = self.location
         
@@ -358,10 +358,10 @@ class CraftingAgent(Agent):
     # Grab items (or from font) on agent's square and add to inventory
     def __grab(self):
 
-        print("INVENTORY")
-        for item in self.inventory:
-            feature = item + '_count=' + str(self.inventory[item])
-            print(feature)
+        # print("INVENTORY")
+        # for item in self.inventory:
+        #     feature = item + '_count=' + str(self.inventory[item])
+        #     print(feature)
 
         x, y = self.location
         

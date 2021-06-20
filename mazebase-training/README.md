@@ -25,6 +25,8 @@ For our method, use train_hierarchy.py
 For SP, use train_stateprediction.py
 For SR, use train_autoencoder.py
 
+Note: if doing state prediction, make sure to use the 3statemazebase environment.
+
 ## RL Training
 
 To train the model(s) in the paper, run this command:
@@ -42,6 +44,9 @@ To evaluate a trained model, run:
 ```eval
 python3 enjoy.py --load-dir <model_path>
 ```
+
+Please go to pytorchppo/a2c_ppo_acktr/model.py and comment out in the MazeBaseBase class the appropriate sections in the init and forward functions that correspond to the type of model you want. 
+
 
 ## Pre-trained Models
 
