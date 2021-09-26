@@ -174,7 +174,7 @@ class CraftingDataset(Dataset):
                         grid_embedding_array[x][y][4] = 1
                     elif item == 'Block':
                         grid_embedding_array[x][y][5] = 1
-                    elif item == 'Door_closed':
+                    if 'closed' in item: # door closed
                         grid_embedding_array[x][y][6] = 1
 
         return grid_embedding_array
